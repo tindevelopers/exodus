@@ -1,0 +1,58 @@
+---
+description: Best practices for using the Shopify MCP tools in this project
+alwaysApply: true
+---
+
+# Shopify MCP Tools — Usage Guide
+
+## Mandatory First Step
+
+Always call `learn_shopify_api` before any other Shopify tool. It returns a `conversationId` required by every subsequent call. Reuse the same `conversationId` for the entire session.
+
+When switching APIs (e.g. Admin to Functions), call `learn_shopify_api` again with the new `api` value and the existing `conversationId`.
+
+## API Selection Quick Reference
+
+| Goal | `api` value |
+|------|-------------|
+| Manage products, orders, customers, inventory | `admin` |
+| Custom storefront data fetching & cart ops | `storefront-graphql` |
+| Hydrogen storefront questions | `hydrogen` |
+| Shopify Functions (discounts, validation, delivery) | `functions` |
+| Theme / Liquid development | `liquid` |
+| Metafields & Metaobjects | `custom-data` |
+| Polaris UI inside Shopify Admin | `polaris-app-home` |
+| Admin UI Extensions | `polaris-admin-extensions` |
+| Checkout UI Extensions | `polaris-checkout-extensions` |
+| Customer Account Extensions | `polaris-customer-account-extensions` |
+| POS UI Extensions | `pos-ui` |
+| Partner Dashboard data | `partner` |
+| Customer Account API | `customer` |
+| Payment provider integration | `payments-apps` |
+
+## Validation — Always Validate Generated Code
+
+- **GraphQL**: After generating any GraphQL query or mutation, run `validate_graphql_codeblocks` before presenting it.
+- **Components**: After generating Polaris / UI extension code, run `validate_component_codeblocks`.
+- **Liquid / Themes**: After creating or editing theme files, run `validate_theme`.
+
+Never skip validation. Fix all errors before showing final code to the user.
+
+## Schema Exploration
+
+Use `introspect_graphql_schema` to discover fields and operations. Tips:
+- Search by action: "create", "update", "delete", "list"
+- Search by object: "product", "order", "customer"
+- If no results, try shorter or alternate terms (e.g. "capture" instead of "captureSession")
+
+## Documentation
+
+- Use `search_docs_chunks` first to find relevant docs.
+- Then use `fetch_full_docs` with the returned URLs to get complete pages.
+- Prefer Shopify MCP docs over web search — they are more accurate and up to date.
+
+## Extension Targets
+
+When building UI extensions (`polaris-admin-extensions`, `polaris-checkout-extensions`, `polaris-customer-account-extensions`, `pos-ui`):
+1. Call `learn_shopify_api` with the correct API
+2. Call `learn_extension_target_types` to get available targets, components, and APIs for that surface

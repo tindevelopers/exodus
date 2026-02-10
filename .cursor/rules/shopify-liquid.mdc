@@ -1,0 +1,25 @@
+---
+description: Liquid conventions for sections, blocks, and snippets
+globs: sections/**/*.liquid, blocks/**/*.liquid, snippets/**/*.liquid
+alwaysApply: false
+---
+
+# Shopify Liquid Development
+
+## Sections, Blocks, and Snippets
+
+- **Sections**: Full-width page components with `{% schema %}`. Use `{% stylesheet %}` and `{% javascript %}` for scoped assets.
+- **Blocks**: Smaller components inside sections. Include `{% schema %}` for theme editor settings.
+- **Snippets**: Reusable fragments via `{% render 'snippet_name', param: value %}`. No schema; use `{% doc %}` for documentation.
+
+## Schema Best Practices
+
+- Use `t:key.path` for labels to support translations (e.g. `"label": "t:sections.main-product.blocks.title.label"`).
+- For single CSS properties: use CSS variables and `style="--prop: {{ block.settings.prop }}px"`.
+- For multiple properties: use CSS classes with `{{ block.settings.layout }}`.
+- Add new translation keys to `locales/en.default.json` and `locales/en.default.schema.json` for custom sections.
+
+## Validation
+
+- Run `validate_theme` via Shopify MCP after creating or editing theme files.
+- Ensure `{% schema %}` JSON is valid; use the section or theme_block schema as reference.

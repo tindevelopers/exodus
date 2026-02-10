@@ -1,0 +1,24 @@
+---
+description: Exodus theme architecture and Dawn conventions
+alwaysApply: true
+---
+
+# Exodus Theme — Architecture
+
+This theme is based on Shopify's Dawn reference theme. Preserve its structure and conventions.
+
+## Settings Preservation
+
+- **config/settings_schema.json**: Extend by adding new groups; do not remove Dawn's default groups (logo, colors, typography, etc.).
+- **config/settings_data.json**: Never overwrite blindly; it is updated by the theme editor.
+- **templates/*.json**: Extend JSON templates; add sections to existing templates rather than replacing them wholesale.
+- **locales/en.default.json**: Add keys for custom sections; keep existing keys.
+
+## Asset Strategy
+
+- Use `{% stylesheet %}` and `{% javascript %}` in sections/blocks/snippets; avoid adding to `assets/` unless critical for every page.
+- Reference theme settings via `{{ settings.color_primary }}` and similar.
+
+## Workflow
+
+Figma → Builder.io → Liquid: Convert designs into sections/blocks with proper `{% schema %}` so merchants can customize in the theme editor.
