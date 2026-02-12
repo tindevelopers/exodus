@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -11,17 +20,19 @@
           }
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "caption": {
           "type": "text",
           "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text": "{{ product.metafields.custom.subtitle.value }}",
             "text_style": "subtitle"
           }
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -30,7 +41,8 @@
           }
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -39,14 +51,11 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": {
-          "type": "description"
-        },
         "collapsible-row-0": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Materials",
-            "icon": "leather",
+            "heading": "Description",
+            "icon": "none",
             "content": "",
             "page": ""
           }
@@ -54,34 +63,37 @@
         "collapsible-row-1": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Shipping & Returns",
-            "icon": "truck",
-            "content": "",
+            "heading": "Benefits",
+            "icon": "check_mark",
+            "content": "<p>Professional-grade quality trusted by breeders nationwide. Designed for reliable performance in demanding breeding environments.</p>",
             "page": ""
           }
         },
         "collapsible-row-2": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Dimensions",
-            "icon": "ruler",
-            "content": "",
+            "heading": "How to use",
+            "icon": "clipboard",
+            "content": "<p>Please refer to the included product documentation for detailed usage instructions. Contact our expert team at 1-877-396-3874 for guidance.</p>",
             "page": ""
           }
         },
         "collapsible-row-3": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Care Instructions",
-            "icon": "heart",
-            "content": "",
+            "heading": "Quality & Certification",
+            "icon": "check_mark",
+            "content": "<p>All products meet strict quality standards. Sourced from trusted manufacturers with proven track records in the breeding industry.</p>",
             "page": ""
           }
         },
-        "share": {
-          "type": "share",
+        "collapsible-row-4": {
+          "type": "collapsible_tab",
           "settings": {
-            "share_label": "Share"
+            "heading": "Shipping & Returns",
+            "icon": "truck",
+            "content": "<p>Orders ship via USPS or UPS Ground depending on weight and dimensions. For shipping questions, call 1-877-396-3874.</p>",
+            "page": ""
           }
         }
       },
@@ -93,115 +105,147 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description",
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
         "collapsible-row-3",
-        "share"
+        "collapsible-row-4"
       ],
       "settings": {
         "enable_sticky_info": true,
-        "gallery_layout": "stacked",
         "media_size": "large",
         "constrain_to_viewport": true,
+        "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
-        "hide_variants": true,
+        "hide_variants": false,
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
       }
     },
-    "image-with-text": {
-      "type": "image-with-text",
+    "trust-gallery": {
+      "type": "exodus-trust-gallery",
       "blocks": {
-        "image-with-text-0": {
-          "type": "heading",
+        "img_1": {
+          "type": "image",
           "settings": {
-            "heading": "Image with text",
-            "heading_size": "h1"
+            "width": 400,
+            "height": 520
           }
         },
-        "image-with-text-1": {
-          "type": "text",
+        "img_2": {
+          "type": "image",
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "text_style": "body"
+            "width": 550,
+            "height": 580
+          }
+        },
+        "img_3": {
+          "type": "image",
+          "settings": {
+            "width": 410,
+            "height": 400
+          }
+        },
+        "img_4": {
+          "type": "image",
+          "settings": {
+            "width": 410,
+            "height": 400
+          }
+        },
+        "img_5": {
+          "type": "image",
+          "settings": {
+            "width": 510,
+            "height": 400
+          }
+        },
+        "img_6": {
+          "type": "image",
+          "settings": {
+            "width": 360,
+            "height": 490
+          }
+        },
+        "img_7": {
+          "type": "image",
+          "settings": {
+            "width": 400,
+            "height": 400
           }
         }
       },
       "block_order": [
-        "image-with-text-0",
-        "image-with-text-1"
+        "img_1",
+        "img_2",
+        "img_3",
+        "img_4",
+        "img_5",
+        "img_6",
+        "img_7"
       ],
       "settings": {
-        "height": "small",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "color_scheme": "scheme-2",
-        "mobile_content_alignment": "left",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "Trusted Partner for Every Breeding Need",
+        "heading_size": 54
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
+    "testimonials": {
+      "type": "exodus-testimonials",
       "blocks": {
-        "column-0": {
-          "type": "column",
+        "review_1": {
+          "type": "testimonial",
           "settings": {
-            "title": "Free Shipping",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "stars": 5,
+            "review_title": "Best breeding supply source",
+            "body": "We've been ordering from Exodus for over 10 years. Their semen shippers and extenders are top quality, and the team is always available to answer questions.",
+            "author_name": "Megan Thompson",
+            "author_location": "Lexington, Kentucky"
           }
         },
-        "column-1": {
-          "type": "column",
+        "review_2": {
+          "type": "testimonial",
           "settings": {
-            "title": "Hassle-Free Exchanges",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "stars": 5,
+            "review_title": "Fast shipping, great packaging",
+            "body": "Ordered insemination supplies on Monday and had them by Wednesday. Everything was carefully packaged. Their customer service even called to confirm my order details.",
+            "author_name": "James Rodriguez",
+            "author_location": "Ocala, Florida"
+          }
+        },
+        "review_3": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Excellent equine supplies",
+            "body": "As a mare owner managing breeding from a distance, Exodus has been invaluable. The Equine Express cooled semen shipper works perfectly every time.",
+            "author_name": "Sarah Chen",
+            "author_location": "Wellington, Florida"
           }
         }
       },
       "block_order": [
-        "column-0",
-        "column-1"
+        "review_1",
+        "review_2",
+        "review_3"
       ],
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "left",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "Trusted by 10,000+ Breeders Nationwide",
+        "heading_size": 76
       }
     },
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "You may also like",
+        "heading": "Similar Products",
         "heading_size": "h2",
         "columns_desktop": 4,
+        "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 28
       }
@@ -209,8 +253,8 @@
   },
   "order": [
     "main",
-    "image-with-text",
-    "multicolumn",
+    "trust-gallery",
+    "testimonials",
     "related-products"
   ]
 }

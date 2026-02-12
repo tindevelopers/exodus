@@ -1,0 +1,110 @@
+{% comment %}
+  Exodus Selling Plan Picker — AG1-style Subscribe & Save / Buy one time toggle.
+  Renders radio options for each selling plan group + a "Buy one time" option.
+
+  Accepts:
+  - product: {Object} product object
+  - product_form_id: {String} product form id
+  - section_id: {String} section id
+
+  Usage:
+  {% render 'exodus-selling-plan-picker', product: product, product_form_id: product_form_id, section_id: section.id %}
+{% endcomment %}
+
+{%- if product.selling_plan_groups.size > 0 -%}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign first_group = product.selling_plan_groups[0] -%}
+
+  <div class="exodus-sp" data-section="{{ section_id }}">
+    <p class="exodus-sp__label">Choose Your Plan:</p>
+
+    <div class="exodus-sp__options">
+      {%- comment -%} Subscribe & Save option {%- endcomment -%}
+      {%- for group in product.selling_plan_groups -%}
+        {%- for plan in group.selling_plans -%}
+          {%- liquid
+            assign plan_allocation = nil
+            for allocation in current_variant.selling_plan_allocations
+              if allocation.selling_plan.id == plan.id
+                assign plan_allocation = allocation
+                break
+              endif
+            endfor
+
+            assign plan_price = plan_allocation.per_delivery_price | default: current_variant.price
+            assign plan_compare = plan_allocation.compare_at_price | default: current_variant.compare_at_price
+
+            assign plan_savings = 0
+            if plan_compare and plan_compare > plan_price
+              assign plan_savings = plan_compare | minus: plan_price
+            endif
+          -%}
+
+          <label class="exodus-sp__option exodus-sp__option--subscribe{% if forloop.parentloop.first and forloop.first %} exodus-sp__option--active{% endif %}" data-plan-id="{{ plan.id }}">
+            <input
+              type="radio"
+              name="exodus_selling_plan_{{ section_id }}"
+              value="{{ plan.id }}"
+              {% if forloop.parentloop.first and forloop.first %}checked{% endif %}
+              class="exodus-sp__radio"
+            >
+            <div class="exodus-sp__option-header">
+              <div class="exodus-sp__option-left">
+                <span class="exodus-sp__radio-dot"></span>
+                <span class="exodus-sp__option-name">{{ plan.name }}</span>
+              </div>
+              <div class="exodus-sp__option-right">
+                {%- if plan_savings > 0 -%}
+                  <s class="exodus-sp__compare-price">{{ plan_compare | money }}</s>
+                {%- endif -%}
+                <span class="exodus-sp__plan-price">{{ plan_price | money }}</span>
+              </div>
+            </div>
+
+            {%- if plan.description != blank -%}
+              <div class="exodus-sp__option-details">
+                <p class="exodus-sp__option-desc">{{ plan.description }}</p>
+              </div>
+            {%- endif -%}
+
+            <div class="exodus-sp__option-perks">
+              {%- if plan_savings > 0 -%}
+                <div class="exodus-sp__perk">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.7L6 12 2.7 8.7l1-1L6 10l6.3-6.3 1 1z" fill="#1F2F44"/></svg>
+                  <span>Save {{ plan_savings | money }} per order</span>
+                </div>
+              {%- endif -%}
+              <div class="exodus-sp__perk">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.7L6 12 2.7 8.7l1-1L6 10l6.3-6.3 1 1z" fill="#1F2F44"/></svg>
+                <span>Easy edit, skip, or cancel anytime</span>
+              </div>
+              <div class="exodus-sp__perk">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.7L6 12 2.7 8.7l1-1L6 10l6.3-6.3 1 1z" fill="#1F2F44"/></svg>
+                <span>Free shipping on subscriptions</span>
+              </div>
+            </div>
+          </label>
+        {%- endfor -%}
+      {%- endfor -%}
+
+      {%- comment -%} Buy one time option {%- endcomment -%}
+      <label class="exodus-sp__option exodus-sp__option--onetime" data-plan-id="">
+        <input
+          type="radio"
+          name="exodus_selling_plan_{{ section_id }}"
+          value=""
+          class="exodus-sp__radio"
+        >
+        <div class="exodus-sp__option-header">
+          <div class="exodus-sp__option-left">
+            <span class="exodus-sp__radio-dot"></span>
+            <span class="exodus-sp__option-name">Buy one time</span>
+          </div>
+          <div class="exodus-sp__option-right">
+            <span class="exodus-sp__plan-price" data-onetime-price>{{ current_variant.price | money }}</span>
+          </div>
+        </div>
+      </label>
+    </div>
+  </div>
+{%- endif -%}

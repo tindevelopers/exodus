@@ -1,0 +1,434 @@
+{%- comment -%}
+  Exodus Testimonials
+  Centered heading + horizontally scrollable review cards.
+  Each card: 5-star rating, review title, body text, author avatar + name + location.
+  Design: Figma Epharma-Home testimonials section.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusTestimonials-{{ section.id }} {
+    width: 100%;
+    overflow: hidden;
+    padding: 100px 0;
+  }
+  /* Title */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 110%;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #0D0D0D;
+    margin: 0 auto 60px;
+    max-width: 1010px;
+    padding: 0 20px;
+  }
+  /* Scrollable track wrapper */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__track-wrap {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__track-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  /* Track */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__track {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0 100px;
+    width: max-content;
+  }
+  /* Card */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    gap: 30px;
+    width: 600px;
+    min-height: 337px;
+    background: #F5F5F5;
+    border: 1px solid #F5F5F5;
+    border-radius: 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  /* Stars + review title group */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  /* Star row */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__stars {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__star {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  /* Review title */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__review-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 130%;
+    color: #0D0D0D;
+    margin: 0;
+  }
+  /* Body text */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #636363;
+    margin: 0;
+  }
+  /* Author row */
+  #ExodusTestimonials-{{ section.id }} .exodus-test__author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #E0E0E0;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__avatar-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    background: #D0D0D0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__avatar-placeholder svg {
+    width: 28px;
+    height: 28px;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__author-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%;
+    color: #0D0D0D;
+    margin: 0;
+  }
+  #ExodusTestimonials-{{ section.id }} .exodus-test__author-location {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #636363;
+    margin: 0;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    #ExodusTestimonials-{{ section.id }} .exodus-test__title {
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__track {
+      padding: 0 40px;
+      gap: 24px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__card {
+      width: 460px;
+      min-height: auto;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__review-title {
+      font-size: 26px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__body {
+      font-size: 16px;
+    }
+  }
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    #ExodusTestimonials-{{ section.id }} .exodus-test__title {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__track {
+      padding: 0 20px;
+      gap: 16px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__card {
+      width: 320px;
+      padding: 20px;
+      gap: 20px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__review-title {
+      font-size: 22px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__body {
+      font-size: 15px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__avatar {
+      width: 48px;
+      height: 48px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__avatar-placeholder {
+      width: 48px;
+      height: 48px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__author-name {
+      font-size: 16px;
+    }
+    #ExodusTestimonials-{{ section.id }} .exodus-test__author-location {
+      font-size: 14px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusTestimonials-{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="exodus-test__title">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  <div class="exodus-test__track-wrap">
+    <div class="exodus-test__track">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'testimonial' -%}
+          <div class="exodus-test__card" {{ block.shopify_attributes }}>
+            {%- comment -%} Stars + review title {%- endcomment -%}
+            <div class="exodus-test__top">
+              <div class="exodus-test__stars">
+                {%- assign star_count = block.settings.stars | default: 5 -%}
+                {%- for i in (1..5) -%}
+                  <svg class="exodus-test__star" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {%- if i <= star_count -%}
+                      <path d="M11 1.83l2.47 5.01 5.53.8-4 3.9.94 5.49L11 14.42l-4.94 2.61.94-5.49-4-3.9 5.53-.8L11 1.83z" fill="#EF8E06"/>
+                    {%- else -%}
+                      <path d="M11 1.83l2.47 5.01 5.53.8-4 3.9.94 5.49L11 14.42l-4.94 2.61.94-5.49-4-3.9 5.53-.8L11 1.83z" fill="#D0D0D0"/>
+                    {%- endif -%}
+                  </svg>
+                {%- endfor -%}
+              </div>
+
+              {%- if block.settings.review_title != blank -%}
+                <h3 class="exodus-test__review-title">{{ block.settings.review_title }}</h3>
+              {%- endif -%}
+            </div>
+
+            {%- comment -%} Body {%- endcomment -%}
+            {%- if block.settings.body != blank -%}
+              <p class="exodus-test__body">"{{ block.settings.body }}"</p>
+            {%- endif -%}
+
+            {%- comment -%} Author {%- endcomment -%}
+            <div class="exodus-test__author">
+              {%- if block.settings.avatar != blank -%}
+                {{ block.settings.avatar | image_url: width: 120 | image_tag: class: 'exodus-test__avatar', loading: 'lazy' }}
+              {%- else -%}
+                <div class="exodus-test__avatar-placeholder">
+                  <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="14" cy="10" r="5" stroke="#A5A5A5" stroke-width="2"/>
+                    <path d="M4 24c0-4.42 4.48-8 10-8s10 3.58 10 8" stroke="#A5A5A5" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              {%- endif -%}
+
+              <div class="exodus-test__author-info">
+                {%- if block.settings.author_name != blank -%}
+                  <p class="exodus-test__author-name">{{ block.settings.author_name }}</p>
+                {%- endif -%}
+                {%- if block.settings.author_location != blank -%}
+                  <p class="exodus-test__author-location">{{ block.settings.author_location }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Exodus Testimonials",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by 10k+ Happy Customers, With 4.9 Review"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 32,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 76
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "stars",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star rating",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Review title",
+          "default": "Excellent service for Rx refills"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Review body",
+          "default": "Submitting my prescription took less than a minute. They contacted my doctor and got it filled fast. Everything arrived safely packed with clear instructions. Highly recommended!"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Author photo",
+          "info": "Circular avatar. Recommended: 120x120px."
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Megan Thompson"
+        },
+        {
+          "type": "text",
+          "id": "author_location",
+          "label": "Author location",
+          "default": "Denver, Colorado"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Exodus Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Excellent service for Rx refills",
+            "body": "Submitting my prescription took less than a minute. They contacted my doctor and got it filled fast. Everything arrived safely packed with clear instructions. Highly recommended!",
+            "author_name": "Megan Thompson",
+            "author_location": "Denver, Colorado"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Fast delivery, great packaging",
+            "body": "I was impressed by how quickly my order arrived. The medications were well-packaged with temperature control. The pharmacist even called to confirm my dosage. Will definitely order again.",
+            "author_name": "James Rodriguez",
+            "author_location": "Austin, Texas"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Best online pharmacy experience",
+            "body": "Switching from my local pharmacy was the best decision. The AI prescription reader saved me so much time, and the pharmacist review gives me peace of mind. Prices are competitive too.",
+            "author_name": "Sarah Chen",
+            "author_location": "San Francisco, California"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Reliable and trustworthy",
+            "body": "As someone who manages multiple prescriptions, this service has been a lifesaver. The auto-refill reminders and easy upload process make everything seamless. Highly recommend to anyone.",
+            "author_name": "David Williams",
+            "author_location": "Chicago, Illinois"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Outstanding customer support",
+            "body": "Had a question about drug interactions and their pharmacist team responded within minutes. The level of care and attention is something you rarely find with online pharmacies.",
+            "author_name": "Emily Parker",
+            "author_location": "Seattle, Washington"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Convenient and affordable",
+            "body": "The prices are significantly lower than my local pharmacy, and the convenience of home delivery is unbeatable. The rewards program is a nice bonus too. Five stars all around!",
+            "author_name": "Michael Brown",
+            "author_location": "Miami, Florida"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Seamless prescription transfer",
+            "body": "Transferring my prescriptions was incredibly easy. Just took a photo and the AI handled the rest. My medications arrived the next day. This is the future of pharmacy.",
+            "author_name": "Lisa Martinez",
+            "author_location": "Phoenix, Arizona"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Impressed with the technology",
+            "body": "The AI prescription reading feature is remarkable. It accurately captured all my medication details in seconds. Combined with pharmacist verification, I feel completely safe ordering here.",
+            "author_name": "Robert Kim",
+            "author_location": "Portland, Oregon"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -55,6 +55,8 @@
           {% endif %}
           class="product-variant-id"
         >
+        {%- comment -%} Selling plan input for subscriptions {%- endcomment -%}
+        <input type="hidden" name="selling_plan" value="" class="exodus-selling-plan-input">
 
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}

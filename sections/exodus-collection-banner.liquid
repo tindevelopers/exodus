@@ -1,0 +1,258 @@
+{%- comment -%}
+  Exodus Collection Banner
+  Breadcrumb, centered heading, and horizontal category tabs.
+  Replaces Dawn's default collection banner.
+  Tabs link to different collections for category filtering.
+{%- endcomment -%}
+
+{{ 'exodus-collection.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #ExodusCollBanner-{{ section.id }} {
+    width: 100%;
+    background: #FFFFFF;
+    padding: 40px 0 0;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  /* Breadcrumb */
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #636363;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__breadcrumb a {
+    color: #636363;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__breadcrumb a:hover {
+    color: #0D0D0D;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__breadcrumb-sep {
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: #636363;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__breadcrumb-current {
+    color: #0D0D0D;
+    font-weight: 500;
+  }
+  /* Heading */
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 115%;
+    letter-spacing: -0.02em;
+    color: #0D0D0D;
+    margin: 0;
+    text-align: center;
+    max-width: 600px;
+  }
+  /* Category tabs */
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    color: #0D0D0D;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 1.2px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__tab:hover {
+    color: #285CEA;
+  }
+  #ExodusCollBanner-{{ section.id }} .exodus-cb__tab--active {
+    border-color: #285CEA;
+    color: #285CEA;
+  }
+
+  @media screen and (max-width: 989px) {
+    #ExodusCollBanner-{{ section.id }} .exodus-cb__heading {
+      font-size: 36px;
+    }
+    #ExodusCollBanner-{{ section.id }} .exodus-cb__tabs {
+      gap: 16px;
+    }
+    #ExodusCollBanner-{{ section.id }} .exodus-cb__tab {
+      font-size: 15px;
+      padding: 6px 10px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #ExodusCollBanner-{{ section.id }} {
+      padding: 24px 0 0;
+    }
+    #ExodusCollBanner-{{ section.id }} .exodus-cb__inner {
+      padding: 0 20px;
+      gap: 20px;
+    }
+    #ExodusCollBanner-{{ section.id }} .exodus-cb__heading {
+      font-size: 28px;
+    }
+    #ExodusCollBanner-{{ section.id }} .exodus-cb__tabs {
+      gap: 10px;
+      justify-content: flex-start;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+      width: 100%;
+    }
+    #ExodusCollBanner-{{ section.id }} .exodus-cb__tab {
+      font-size: 14px;
+      padding: 6px 10px;
+      flex-shrink: 0;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusCollBanner-{{ section.id }}">
+  <div class="exodus-cb__inner">
+    {%- comment -%} Breadcrumb {%- endcomment -%}
+    <nav class="exodus-cb__breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="exodus-cb__breadcrumb-sep"></span>
+      <span class="exodus-cb__breadcrumb-current">{{ collection.title | default: 'Shop' }}</span>
+    </nav>
+
+    {%- comment -%} Heading {%- endcomment -%}
+    <h1 class="exodus-cb__heading">{{ section.settings.heading | default: collection.title }}</h1>
+
+    {%- comment -%} Category tabs {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <nav class="exodus-cb__tabs" aria-label="Product categories">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign is_active = false
+            if block.settings.collection != blank
+              if block.settings.collection == collection.handle
+                assign is_active = true
+              endif
+            else
+              if block.settings.label == 'All Products' and collection.handle == section.settings.all_products_collection
+                assign is_active = true
+              endif
+            endif
+          -%}
+          <a
+            href="{{ block.settings.url | default: '#' }}"
+            class="exodus-cb__tab{% if is_active %} exodus-cb__tab--active{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.label }}
+          </a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading override",
+      "info": "Leave blank to use the collection title."
+    },
+    {
+      "type": "text",
+      "id": "all_products_collection",
+      "label": "\"All Products\" collection handle",
+      "default": "all",
+      "info": "The handle of the collection that represents all products (used to highlight the All Products tab)."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Category Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "All Products"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "collection",
+          "label": "Collection handle",
+          "info": "Enter the collection handle to auto-highlight this tab when viewing that collection."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Banner",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "label": "All Products",
+            "collection": "all"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Equine Supplies",
+            "collection": "equine-supplies"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Canine Supplies",
+            "collection": "canine-supplies"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

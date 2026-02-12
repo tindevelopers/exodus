@@ -10,7 +10,9 @@
   {% endif %}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'exodus-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'exodus-product-extras.js' | asset_url }}" defer="defer"></script>
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
@@ -97,6 +99,8 @@
                   {{- block.settings.text -}}
                 </p>
               {%- when 'title' -%}
+                {%- comment -%} Star rating above title (AG1-style) {%- endcomment -%}
+                {% render 'exodus-star-rating', product: product %}
                 <div class="product__title" {{ block.shopify_attributes }}>
                   <h1>{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
@@ -210,6 +214,46 @@
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
+                {%- liquid
+                  comment
+                    Resolve tab content: metafield > block setting > page content
+                    Maps tab heading to product metafield namespace "custom"
+                  endcomment
+                  assign tab_heading = block.settings.heading
+                  assign meta_content = blank
+
+                  if tab_heading == 'Description'
+                    if product.description != blank
+                      assign meta_content = product.description
+                    endif
+                  elsif tab_heading == 'Benefits'
+                    if product.metafields.custom.benefits.value != blank
+                      assign meta_content = product.metafields.custom.benefits.value
+                    endif
+                  elsif tab_heading == 'How to use'
+                    if product.metafields.custom.how_to_use.value != blank
+                      assign meta_content = product.metafields.custom.how_to_use.value
+                    endif
+                  elsif tab_heading == 'Quality & Certification'
+                    if product.metafields.custom.quality.value != blank
+                      assign meta_content = product.metafields.custom.quality.value
+                    endif
+                  elsif tab_heading == 'Shipping & Returns'
+                    if product.metafields.custom.shipping_returns.value != blank
+                      assign meta_content = product.metafields.custom.shipping_returns.value
+                    endif
+                  endif
+
+                  comment
+                    Fall back to block content or page content if no metafield
+                  endcomment
+                  if meta_content == blank and block.settings.content != blank
+                    assign meta_content = block.settings.content
+                  endif
+                  if meta_content == blank and block.settings.page != blank
+                    assign meta_content = block.settings.page.content
+                  endif
+                -%}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details id="Details-{{ block.id }}-{{ section.id }}">
                     <summary>
@@ -222,8 +266,7 @@
                       {{- 'icon-caret.svg' | inline_asset_content -}}
                     </summary>
                     <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
+                      {{ meta_content }}
                     </div>
                   </details>
                 </div>
@@ -476,7 +519,14 @@
                 %}
 
               {%- when 'variant_picker' -%}
-                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                {%- comment -%} AG1-style card variant picker {%- endcomment -%}
+                {% render 'exodus-variant-cards', product: product, product_form_id: product_form_id, section_id: section.id %}
+                {%- comment -%} Keep original picker as hidden fallback for Dawn JS {%- endcomment -%}
+                <div class="exodus-hidden-variant-picker" style="display:none !important;">
+                  {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                </div>
+                {%- comment -%} Selling plan picker (Subscribe & Save / Buy one time) {%- endcomment -%}
+                {% render 'exodus-selling-plan-picker', product: product, product_form_id: product_form_id, section_id: section.id %}
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
                   block: block,
@@ -485,6 +535,16 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
+                {%- comment -%} AG1-style trust badge below Add to Cart {%- endcomment -%}
+                <div class="exodus-trust-badge">
+                  <svg class="exodus-trust-badge__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="6" width="22" height="14" rx="2" ry="2"/>
+                    <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                    <path d="M12 13v0"/>
+                    <path d="M1 10h22"/>
+                  </svg>
+                  <span class="exodus-trust-badge__text">Free Shipping**</span>
+                </div>
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">

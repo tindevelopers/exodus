@@ -1,210 +1,353 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "exodus_hero": {
+      "type": "exodus-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "stat_1": {
+          "type": "stat",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "value": "30+",
+            "label": "Years of experience"
           }
         },
-        "text": {
-          "type": "text",
+        "stat_2": {
+          "type": "stat",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "value": "10K+",
+            "label": "Breeders served"
           }
         },
-        "button": {
-          "type": "buttons",
+        "stat_3": {
+          "type": "stat",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "value": "98%",
+            "label": "Client satisfaction"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text",
-        "button"
+        "stat_1",
+        "stat_2",
+        "stat_3"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "image": "shopify://shop_images/2_7f39b18e-0816-41d0-90ae-18d802674f05.png",
+        "heading": "Your Trusted Partner In Reproductive Success",
+        "heading_size": 50,
+        "subtitle": "Premium equine & canine breeding supplies with expert support and fast nationwide shipping",
+        "button_label_1": "Shop Now",
+        "button_link_1": "",
+        "button_label_2": "Explore",
+        "button_link_2": "",
+        "show_stats": true,
+        "min_height": 850
       }
     },
-    "rich_text": {
-      "type": "rich-text",
+    "exodus_categories": {
+      "type": "exodus-categories",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "cat_1": {
+          "type": "category",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "label": "Semen Shippers",
+            "link": "",
+            "featured": false
           }
         },
-        "text": {
-          "type": "text",
+        "cat_2": {
+          "type": "category",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "label": "Insemination Kits",
+            "link": "",
+            "featured": false
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "label": "Semen Extenders",
+            "link": "",
+            "featured": false
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "label": "Equine Supplies",
+            "link": "",
+            "featured": true
+          }
+        },
+        "cat_5": {
+          "type": "category",
+          "settings": {
+            "label": "Canine Supplies",
+            "link": "",
+            "featured": false
+          }
+        },
+        "cat_6": {
+          "type": "category",
+          "settings": {
+            "label": "More+",
+            "link": "",
+            "featured": false
           }
         }
       },
       "block_order": [
-        "heading",
-        "text"
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4",
+        "cat_5",
+        "cat_6"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
+        "title": "Popular Categories"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "exodus_featured": {
+      "type": "exodus-featured-products",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 28,
-        "padding_bottom": 36
+        "heading": "Featured Products",
+        "heading_size": 76,
+        "collection": "frontpage",
+        "products_to_show": 5,
+        "columns": 5,
+        "show_view_all": true,
+        "view_all_label": "View All",
+        "show_sale_badge": true
       }
     },
-    "collage": {
-      "type": "collage",
+    "exodus_differentiators": {
+      "type": "exodus-differentiators",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "feat_1": {
+          "type": "feature",
           "settings": {
-            "collection": ""
+            "icon_name": "truck",
+            "label": "Fast Delivery When It Matters"
           }
         },
-        "product": {
-          "type": "product",
+        "feat_2": {
+          "type": "feature",
           "settings": {
-            "product": "",
-            "second_image": false
+            "icon_name": "veterinary",
+            "label": "Field-Tested & Veterinary-Approved"
           }
         },
-        "collection-1": {
-          "type": "collection",
+        "feat_3": {
+          "type": "feature",
           "settings": {
-            "collection": ""
+            "icon_name": "quality",
+            "label": "Professional-Grade Products"
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon_name": "support",
+            "label": "Expert Support & Guidance"
           }
         }
       },
       "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4"
       ],
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "Why Choose Exodus Breeders?",
+        "heading_size": 48
       }
     },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
+    "exodus_prescription": {
+      "type": "exodus-prescription",
       "blocks": {
-        "column1": {
-          "type": "column",
+        "step_1": {
+          "type": "step",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "step_number": "01",
+            "label": "Browse Products"
           }
         },
-        "column2": {
-          "type": "column",
+        "step_2": {
+          "type": "step",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "step_number": "02",
+            "label": "Add to Cart"
           }
         },
-        "column3": {
-          "type": "column",
+        "step_3": {
+          "type": "step",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "step_number": "03",
+            "label": "Checkout"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "label": "Fast Shipping"
           }
         }
       },
       "block_order": [
-        "column1",
-        "column2",
-        "column3"
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
       ],
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "How To Order",
+        "heading_size": 64,
+        "subtitle": "Get the reproductive supplies you need in just a few simple steps. Fast shipping, expert support, and trusted by breeders nationwide.",
+        "button_label": "Shop Now",
+        "button_link": ""
+      }
+    },
+    "exodus_testimonials": {
+      "type": "exodus-testimonials",
+      "blocks": {
+        "review_1": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Best breeding supply source",
+            "body": "We've been ordering from Exodus for over 10 years. Their semen shippers and extenders are top quality, and the team is always available to answer questions. Wouldn't go anywhere else.",
+            "author_name": "Megan Thompson",
+            "author_location": "Lexington, Kentucky"
+          }
+        },
+        "review_2": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Fast shipping, great packaging",
+            "body": "Ordered insemination supplies on Monday and had them by Wednesday. Everything was carefully packaged. Their customer service even called to confirm my order details. Will definitely order again.",
+            "author_name": "James Rodriguez",
+            "author_location": "Ocala, Florida"
+          }
+        },
+        "review_3": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Excellent equine supplies",
+            "body": "As a mare owner managing breeding from a distance, Exodus has been invaluable. The Equine Express cooled semen shipper works perfectly every time. Great products at fair prices.",
+            "author_name": "Sarah Chen",
+            "author_location": "Wellington, Florida"
+          }
+        },
+        "review_4": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Reliable and trustworthy",
+            "body": "Running a canine breeding program requires dependable supplies. Exodus consistently delivers quality products on time. Their Next Generation extenders have improved our conception rates significantly.",
+            "author_name": "David Williams",
+            "author_location": "Orange City, Iowa"
+          }
+        },
+        "review_5": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Outstanding customer support",
+            "body": "Had a question about which extender to use for our stallion and their team responded within minutes with detailed recommendations. The level of expertise is unmatched in this industry.",
+            "author_name": "Emily Parker",
+            "author_location": "Aiken, South Carolina"
+          }
+        },
+        "review_6": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "One-stop shop for breeders",
+            "body": "From collection kits to embryo transfer supplies, Exodus has everything we need. The prices are competitive and the quality is always consistent. Five stars all around!",
+            "author_name": "Michael Brown",
+            "author_location": "Pilot Point, Texas"
+          }
+        },
+        "review_7": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Great canine breeding kits",
+            "body": "The canine collection and insemination kits are perfectly assembled with everything you need. Saved us so much time compared to sourcing individual items. Highly recommend for dog breeders.",
+            "author_name": "Lisa Martinez",
+            "author_location": "Scottsdale, Arizona"
+          }
+        },
+        "review_8": {
+          "type": "testimonial",
+          "settings": {
+            "stars": 5,
+            "review_title": "Industry leader for a reason",
+            "body": "Exodus Breeders has been the go-to for reproductive supplies in our region for decades. Their product knowledge and commitment to breeder success sets them apart from any competitor.",
+            "author_name": "Robert Kim",
+            "author_location": "Versailles, Kentucky"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5",
+        "review_6",
+        "review_7",
+        "review_8"
+      ],
+      "settings": {
+        "heading": "Trusted by 10,000+ Breeders Nationwide",
+        "heading_size": 76
+      }
+    },
+    "exodus_cta": {
+      "type": "exodus-cta-banner",
+      "settings": {
+        "font_size": 106,
+        "line1": "Get premium breeding supplies",
+        "line2_dark": "delivered fast",
+        "line2_muted": "trusted,",
+        "line3": "reliable, and backed by Exodus."
+      }
+    },
+    "exodus_blog": {
+      "type": "exodus-blog",
+      "settings": {
+        "heading": "Breeder Resources & News",
+        "heading_size": 76,
+        "blog": "news",
+        "articles_to_show": 3,
+        "show_view_all": true,
+        "view_all_label": "View All",
+        "show_read_time": true
       }
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
+    "exodus_hero",
+    "exodus_categories",
+    "exodus_featured",
+    "exodus_differentiators",
+    "exodus_prescription",
+    "exodus_testimonials",
+    "exodus_cta",
+    "exodus_blog"
   ]
 }

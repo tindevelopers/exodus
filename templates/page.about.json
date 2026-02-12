@@ -1,0 +1,123 @@
+{
+  "sections": {
+    "about-hero": {
+      "type": "exodus-about-hero",
+      "settings": {
+        "label": "OUR STORY",
+        "heading": "About Exodus Breeders",
+        "subtitle": "Trusted partners in professional breeding, built on experience and refined through practice."
+      }
+    },
+    "about-mission": {
+      "type": "exodus-about-mission",
+      "settings": {
+        "heading": "Our Mission",
+        "body": "To deliver professional-grade reproductive supplies supported by knowledgeable technical guidance and exceptional customer service."
+      }
+    },
+    "about-values": {
+      "type": "exodus-about-values",
+      "blocks": {
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "heading": "Field-Tested",
+            "body": "Every equine and canine product is tested within our own breeding program. Real-world performance is our standard."
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "heading": "Reliable",
+            "body": "In reproductive work, reliability is non-negotiable. We ensure every shipment meets the demands of time-sensitive programs."
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "heading": "Expert Support",
+            "body": "Our team brings decades of industry knowledge. We're partners in your breeding program, not just a supplier."
+          }
+        }
+      },
+      "block_order": ["value-1", "value-2", "value-3"]
+    },
+    "about-awards": {
+      "type": "exodus-about-awards",
+      "settings": {
+        "heading": "Awards & Recognition"
+      },
+      "blocks": {
+        "award-1": {
+          "type": "award",
+          "settings": {
+            "name": "Customer Reviews Awards",
+            "year": "2019",
+            "description": "Fast shipping, Expert support & easy reordering.",
+            "highlight": false
+          }
+        },
+        "award-2": {
+          "type": "award",
+          "settings": {
+            "name": "Innovation Awards",
+            "year": "2020",
+            "description": "Best HealthTech Platform.",
+            "highlight": false
+          }
+        },
+        "award-3": {
+          "type": "award",
+          "settings": {
+            "name": "Compliance Audit",
+            "year": "2023",
+            "description": "Certified by the Pharmacy Quality Alliance (PQA).",
+            "highlight": true
+          }
+        },
+        "award-4": {
+          "type": "award",
+          "settings": {
+            "name": "Top Digital Pharmacy",
+            "year": "2024",
+            "description": "Awarded by the National Pharmacy Association.",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": ["award-1", "award-2", "award-3", "award-4"]
+    },
+    "about-team": {
+      "type": "exodus-about-team",
+      "settings": {
+        "heading": "Meet the Experts Behind the Prescriptions"
+      },
+      "blocks": {
+        "member-1": {
+          "type": "member",
+          "settings": {
+            "name": "Mike Weaver",
+            "role": "Founder & Operations",
+            "bio": "<p>Mike founded Exodus Breeders with a vision to provide professional-grade reproductive supplies to the equine and canine breeding industry.</p><p>With decades of hands-on experience in breeding programs, Mike understands the critical importance of reliable supplies and knowledgeable support.</p>"
+          }
+        },
+        "member-2": {
+          "type": "member",
+          "settings": {
+            "name": "Karen Weaver",
+            "role": "Customer Service & Product Assembly",
+            "bio": "<p>Karen joined Exodus Breeders in 2014 and plays a critical role in ensuring the quality and consistency of our shipping systems. She personally assembles every equine and canine transport container that leaves our facility, maintaining the standards our customers depend on.</p><p>Her attention to detail and commitment to reliability ensure that each shipment meets the demands of time-sensitive breeding programs.</p><p>Karen is married to Mike and is the proud mother of two daughters, Jaidyn and Jenna.</p>"
+          }
+        }
+      },
+      "block_order": ["member-1", "member-2"]
+    }
+  },
+  "order": [
+    "about-hero",
+    "about-mission",
+    "about-values",
+    "about-awards",
+    "about-team"
+  ]
+}

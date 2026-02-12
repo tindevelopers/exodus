@@ -1,0 +1,433 @@
+{%- comment -%}
+  Exodus About Team
+  "Meet the Team" — 4-column grid with photos, social icons on hover,
+  name and role below. Click opens bio modal.
+  Based on Figma Epharma design.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusAboutTeam-{{ section.id }} {
+    width: 100%;
+    background: #FFFFFF;
+    padding: 100px 40px;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #0D0D0D;
+    margin: 0 0 60px;
+    text-align: center;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__member {
+    cursor: pointer;
+    position: relative;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__photo-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #F5F5F5;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__photo-wrap img,
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__photo-wrap svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__member:hover .exodus-at__photo-wrap img {
+    transform: scale(1.04);
+  }
+  /* Social icons overlay — appears on hover at bottom of photo */
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__socials {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__member:hover .exodus-at__socials {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__social-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__social-icon:hover {
+    background: #FFFFFF;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__social-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: #1A1A1A;
+    display: block;
+  }
+  /* Name & role */
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    color: #0D0D0D;
+    margin: 0 0 2px;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__role {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 160%;
+    color: #636363;
+    margin: 0;
+  }
+
+  /* Modal overlay */
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-overlay.is-open {
+    display: flex;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    color: #636363;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-close:hover {
+    color: #0D0D0D;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 130%;
+    color: #0D0D0D;
+    margin: 0 0 8px;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-role {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 150%;
+    color: #2F4F3E;
+    margin: 0 0 24px;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-bio {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 180%;
+    color: #636363;
+    margin: 0;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-bio p {
+    margin: 0 0 16px;
+  }
+  #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-bio p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Tablet: 2 columns */
+  @media screen and (max-width: 989px) {
+    #ExodusAboutTeam-{{ section.id }} {
+      padding: 70px 40px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__heading {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+  }
+
+  /* Mobile: 1 column */
+  @media screen and (max-width: 749px) {
+    #ExodusAboutTeam-{{ section.id }} {
+      padding: 50px 20px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__heading {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__name {
+      font-size: 14px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__role {
+      font-size: 12px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__socials {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__modal-overlay {
+      padding: 20px;
+    }
+    #ExodusAboutTeam-{{ section.id }} .exodus-at__modal {
+      padding: 28px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusAboutTeam-{{ section.id }}">
+  <div class="exodus-at__inner">
+    <h2 class="exodus-at__heading">{{ section.settings.heading }}</h2>
+
+    <div class="exodus-at__grid">
+      {%- for block in section.blocks -%}
+        <div class="exodus-at__member" data-team-member="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="exodus-at__photo-wrap">
+            {%- if block.settings.photo != blank -%}
+              {{ block.settings.photo | image_url: width: 560 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag }}
+            {%- endif -%}
+
+            {%- comment -%} Social icons overlay {%- endcomment -%}
+            {%- if block.settings.email != blank or block.settings.phone != blank or block.settings.facebook != blank or block.settings.linkedin != blank -%}
+              <div class="exodus-at__socials" onclick="event.stopPropagation();">
+                {%- if block.settings.email != blank -%}
+                  <a href="mailto:{{ block.settings.email }}" class="exodus-at__social-icon" title="Email">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.phone != blank -%}
+                  <a href="tel:{{ block.settings.phone }}" class="exodus-at__social-icon" title="Phone">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.facebook != blank -%}
+                  <a href="{{ block.settings.facebook }}" class="exodus-at__social-icon" target="_blank" rel="noopener" title="Facebook">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z"/></svg>
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.linkedin != blank -%}
+                  <a href="{{ block.settings.linkedin }}" class="exodus-at__social-icon" target="_blank" rel="noopener" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2V9zm2-6a2 2 0 110 4 2 2 0 010-4z"/></svg>
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+          <h3 class="exodus-at__name">{{ block.settings.name }}</h3>
+          <p class="exodus-at__role">{{ block.settings.role }}</p>
+        </div>
+
+        {%- comment -%} Bio modal {%- endcomment -%}
+        <div class="exodus-at__modal-overlay" data-team-modal="{{ forloop.index }}">
+          <div class="exodus-at__modal">
+            <button class="exodus-at__modal-close" data-team-close>&times;</button>
+            <h3 class="exodus-at__modal-name">{{ block.settings.name }}</h3>
+            <p class="exodus-at__modal-role">{{ block.settings.role }}</p>
+            <div class="exodus-at__modal-bio">
+              {{ block.settings.bio }}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var section = document.getElementById('ExodusAboutTeam-{{ section.id }}');
+      if (!section) return;
+
+      section.querySelectorAll('[data-team-member]').forEach(function(member) {
+        member.addEventListener('click', function() {
+          var idx = this.dataset.teamMember;
+          var modal = section.querySelector('[data-team-modal="' + idx + '"]');
+          if (modal) modal.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      section.querySelectorAll('[data-team-close]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          this.closest('.exodus-at__modal-overlay').classList.remove('is-open');
+          document.body.style.overflow = '';
+        });
+      });
+
+      section.querySelectorAll('.exodus-at__modal-overlay').forEach(function(overlay) {
+        overlay.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('is-open');
+            document.body.style.overflow = '';
+          }
+        });
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          section.querySelectorAll('.exodus-at__modal-overlay.is-open').forEach(function(m) {
+            m.classList.remove('is-open');
+          });
+          document.body.style.overflow = '';
+        }
+      });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "About Team",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Meet the Experts Behind the Prescriptions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Team Member"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / Title",
+          "default": "Role"
+        },
+        {
+          "type": "richtext",
+          "id": "bio",
+          "label": "Bio",
+          "default": "<p>Add a bio for this team member here.</p>"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email (optional)"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone (optional)"
+        },
+        {
+          "type": "url",
+          "id": "facebook",
+          "label": "Facebook URL (optional)"
+        },
+        {
+          "type": "url",
+          "id": "linkedin",
+          "label": "LinkedIn URL (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Team",
+      "blocks": [
+        {
+          "type": "member",
+          "settings": {
+            "name": "Mike Weaver",
+            "role": "Founder & Operations",
+            "bio": "<p>Mike founded Exodus Breeders with a vision to provide professional-grade reproductive supplies to the equine and canine breeding industry.</p><p>With decades of hands-on experience in breeding programs, Mike understands the critical importance of reliable supplies and knowledgeable support.</p>"
+          }
+        },
+        {
+          "type": "member",
+          "settings": {
+            "name": "Karen Weaver",
+            "role": "Customer Service & Product Assembly",
+            "bio": "<p>Karen joined Exodus Breeders in 2014 and plays a critical role in ensuring the quality and consistency of our shipping systems. She personally assembles every equine and canine transport container that leaves our facility, maintaining the standards our customers depend on.</p><p>Her attention to detail and commitment to reliability ensure that each shipment meets the demands of time-sensitive breeding programs.</p><p>Karen is married to Mike and is the proud mother of two daughters, Jaidyn and Jenna.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

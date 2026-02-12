@@ -1,0 +1,377 @@
+{%- comment -%}
+  Exodus Header
+  Clean white header: logo (with right border) | nav links | icon buttons (search, account, cart).
+  Nav links: DM Sans 500, 16px. Active link has bottom border #1F2F44.
+  Icon buttons: 44px circles with 1px #2B2B2B border.
+  Cart badge: 22px dark circle with white count.
+  Design: Figma Epharma-Home header.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusHeader-{{ section.id }} {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background: #FFFFFF;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 26px 100px;
+    max-width: 1920px;
+    margin: 0 auto;
+    height: 96px;
+    box-sizing: border-box;
+  }
+  /* Logo area */
+  #ExodusHeader-{{ section.id }} .exodus-header__logo-wrap {
+    display: flex;
+    align-items: center;
+    padding-right: 60px;
+    border-right: 1px solid #F5F5F5;
+    flex-shrink: 0;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__logo-wrap img {
+    max-width: 194px;
+    height: 37px;
+    object-fit: contain;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1F2F44;
+    text-decoration: none;
+  }
+  /* Nav + icons container */
+  #ExodusHeader-{{ section.id }} .exodus-header__right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+  /* Navigation links */
+  #ExodusHeader-{{ section.id }} .exodus-header__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__nav-item {
+    position: relative;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: #2B2B2B;
+    text-decoration: none;
+    padding: 0 4px 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__nav-link:hover,
+  #ExodusHeader-{{ section.id }} .exodus-header__nav-link--active {
+    color: #1F2F44;
+    border-bottom-color: #1F2F44;
+  }
+  /* Dropdown arrow */
+  #ExodusHeader-{{ section.id }} .exodus-header__nav-arrow {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  /* Icon buttons group */
+  #ExodusHeader-{{ section.id }} .exodus-header__icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    margin-left: 40px;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__icon-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #2B2B2B;
+    border-radius: 80px;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: #2B2B2B;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__icon-btn:hover {
+    background: #2B2B2B;
+    color: #FFFFFF;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__icon-btn:hover svg {
+    stroke: #FFFFFF;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__icon-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #2B2B2B;
+    fill: none;
+    stroke-width: 1.5;
+    transition: stroke 0.2s;
+  }
+  /* Cart badge */
+  #ExodusHeader-{{ section.id }} .exodus-header__cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -8px;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    background: #2B2B2B;
+    border-radius: 35px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    color: #FFFFFF;
+    box-sizing: border-box;
+  }
+  /* Mobile menu toggle */
+  #ExodusHeader-{{ section.id }} .exodus-header__menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #2B2B2B;
+    border-radius: 80px;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__menu-toggle svg {
+    width: 24px;
+    height: 24px;
+    stroke: #2B2B2B;
+    fill: none;
+    stroke-width: 1.5;
+  }
+  /* Mobile drawer */
+  #ExodusHeader-{{ section.id }} .exodus-header__mobile-drawer {
+    display: none;
+    position: fixed;
+    top: 96px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #FFFFFF;
+    z-index: 99;
+    padding: 30px 20px;
+    overflow-y: auto;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__mobile-drawer.is-open {
+    display: block;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__mobile-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  #ExodusHeader-{{ section.id }} .exodus-header__mobile-nav a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 140%;
+    color: #2B2B2B;
+    text-decoration: none;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    #ExodusHeader-{{ section.id }} .exodus-header__inner {
+      padding: 20px 40px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__nav {
+      display: none;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__menu-toggle {
+      display: flex;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__icons {
+      margin-left: auto;
+      gap: 12px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__logo-wrap {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    #ExodusHeader-{{ section.id }} .exodus-header__inner {
+      padding: 16px 20px;
+      height: 72px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__logo-wrap img {
+      max-width: 140px;
+      height: 28px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__icon-btn {
+      width: 38px;
+      height: 38px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__icon-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__menu-toggle {
+      width: 38px;
+      height: 38px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__menu-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__icons {
+      gap: 8px;
+    }
+    #ExodusHeader-{{ section.id }} .exodus-header__mobile-drawer {
+      top: 72px;
+    }
+  }
+{%- endstyle -%}
+
+<header id="ExodusHeader-{{ section.id }}">
+  <div class="exodus-header__inner">
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="exodus-header__logo-wrap">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 388 | image_tag: loading: 'eager', sizes: '194px', widths: '194, 388' }}
+      {%- else -%}
+        <span class="exodus-header__logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Desktop navigation {%- endcomment -%}
+    <div class="exodus-header__right">
+      {%- if section.settings.menu != blank -%}
+        <nav>
+          <ul class="exodus-header__nav">
+            {%- for link in section.settings.menu.links -%}
+              <li class="exodus-header__nav-item">
+                <a
+                  href="{{ link.url }}"
+                  class="exodus-header__nav-link{% if link.active %} exodus-header__nav-link--active{% endif %}"
+                >
+                  {{ link.title }}
+                  {%- if link.links.size > 0 -%}
+                    <svg class="exodus-header__nav-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 5l4 4 4-4" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {%- endif -%}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+
+      {%- comment -%} Icon buttons {%- endcomment -%}
+      <div class="exodus-header__icons">
+        {%- comment -%} Search {%- endcomment -%}
+        <a href="{{ routes.search_url }}" class="exodus-header__icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M16 16l4.5 4.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+        {%- comment -%} Account {%- endcomment -%}
+        <a href="{{ routes.account_url }}" class="exodus-header__icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21c0-3.87 3.58-7 8-7s8 3.13 8 7" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+        {%- comment -%} Cart {%- endcomment -%}
+        <a href="{{ routes.cart_url }}" class="exodus-header__icon-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 6h18" stroke-linecap="round"/>
+            <path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {%- if cart.item_count > 0 -%}
+            <span class="exodus-header__cart-badge">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+
+      {%- comment -%} Mobile menu toggle {%- endcomment -%}
+      <button class="exodus-header__menu-toggle" aria-label="Menu" onclick="document.getElementById('ExodusDrawer-{{ section.id }}').classList.toggle('is-open')">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile drawer {%- endcomment -%}
+  <div id="ExodusDrawer-{{ section.id }}" class="exodus-header__mobile-drawer">
+    {%- if section.settings.menu != blank -%}
+      <ul class="exodus-header__mobile-nav">
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Exodus Header",
+  "tag": "section",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Recommended: 194x37px or 2x (388x74px)."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky header",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

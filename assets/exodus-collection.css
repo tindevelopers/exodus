@@ -1,0 +1,279 @@
+/* ============================================================
+   Exodus Collection / Catalog Page Overrides
+   Matches Figma product card and grid design.
+   ============================================================ */
+
+/* ---- Product Grid: force 4-col desktop ---- */
+.collection .product-grid {
+  gap: 20px !important;
+  row-gap: 48px !important;
+}
+@media screen and (min-width: 990px) {
+  .collection .product-grid.grid--4-col-desktop .grid__item {
+    width: calc(25% - 15px) !important;
+    max-width: calc(25% - 15px) !important;
+  }
+}
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .collection .product-grid .grid__item {
+    width: calc(33.333% - 12px) !important;
+    max-width: calc(33.333% - 12px) !important;
+  }
+}
+
+/* ---- Product Card Wrapper ---- */
+.collection .card-wrapper {
+  position: relative;
+}
+
+/* ---- Card: clean, no border, no shadow ---- */
+.collection .card {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+.collection .card--standard .card__inner {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  background: #F5F5F5 !important;
+  overflow: hidden;
+}
+.collection .card--card {
+  border: none !important;
+  box-shadow: none !important;
+  background: #F5F5F5 !important;
+  border-radius: 10px !important;
+}
+.collection .card--card .card__inner {
+  border-radius: 10px !important;
+  background: #F5F5F5 !important;
+}
+
+/* ---- Card Media: image area with 10px radius ---- */
+.collection .card__media {
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+.collection .card__media .media {
+  background: #F5F5F5 !important;
+  padding: 16px !important;
+}
+.collection .card__media .media img {
+  object-fit: contain !important;
+  border-radius: 0 !important;
+}
+
+/* ---- Card Content: typography from Figma ---- */
+.collection .card__content {
+  padding: 0 !important;
+}
+.collection .card__information {
+  padding: 16px 0 0 !important;
+  gap: 2px !important;
+}
+
+/* Product title: DM Sans 600, 22px */
+.collection .card__heading {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 22px !important;
+  line-height: 140% !important;
+  color: #0D0D0D !important;
+  margin: 0 !important;
+}
+.collection .card__heading a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* ---- Vendor / subtitle: Inter 500, 16px ---- */
+.collection .card .caption-with-letter-spacing {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 150% !important;
+  color: #636363 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+/* ---- Price: DM Sans 600, 22px ---- */
+.collection .price {
+  font-family: 'DM Sans', sans-serif !important;
+  margin-top: 14px !important;
+}
+.collection .price-item--regular,
+.collection .price-item--sale {
+  font-weight: 600 !important;
+  font-size: 22px !important;
+  line-height: 140% !important;
+  color: #0D0D0D !important;
+}
+/* Compare-at / was price */
+.collection .price--on-sale .price-item--regular {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  color: #A5A5A5 !important;
+  text-decoration: line-through !important;
+}
+
+/* ---- Sale badge: Orange #EF8E06, pill, top-left ---- */
+.collection .card .badge {
+  position: absolute !important;
+  top: 20px !important;
+  left: 20px !important;
+  z-index: 2 !important;
+  background: #EF8E06 !important;
+  color: #FFFFFF !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  padding: 6px 14px !important;
+  border-radius: 70px !important;
+  border: none !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+/* Hide sold out badge on collection, only show sale */
+.collection .card .badge:not(.price__badge-sale):not(.badge--sale) {
+  display: none !important;
+}
+
+/* ---- Add to Cart hover button (inside image area) ---- */
+.collection .card__inner {
+  position: relative !important;
+}
+.collection .card__inner::after {
+  content: 'Add to Cart';
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: calc(100% - 32px);
+  padding: 14px 20px;
+  background: #1F2F44;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 140%;
+  color: #FFFFFF;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 3;
+  box-sizing: border-box;
+}
+.collection .card__inner:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* ---- Quick add button: hide Dawn's default ---- */
+.collection .quick-add {
+  display: none !important;
+}
+
+/* ---- Remove default Dawn card hover effects ---- */
+.collection .card:hover .card__heading a,
+.collection .card:hover .card__heading {
+  text-decoration: none !important;
+}
+.collection .card:hover {
+  box-shadow: none !important;
+}
+.collection .card__inner:hover {
+  box-shadow: none !important;
+}
+
+/* ---- Hide default Dawn facets/filters (we use category tabs) ---- */
+.collection .facets-wrapper {
+  display: none !important;
+}
+
+/* ---- Pagination styling ---- */
+.collection .pagination-wrapper {
+  margin-top: 48px !important;
+}
+.collection .pagination li a,
+.collection .pagination li span {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  color: #636363 !important;
+  border-radius: 8px !important;
+  min-width: 40px !important;
+  height: 40px !important;
+}
+.collection .pagination li a:hover {
+  background: #F5F5F5 !important;
+  color: #0D0D0D !important;
+}
+.collection .pagination li .pagination__item--current {
+  background: #0D0D0D !important;
+  color: #FFFFFF !important;
+  border-color: #0D0D0D !important;
+}
+
+/* ---- Responsive: tablet ---- */
+@media screen and (max-width: 989px) {
+  .collection .product-grid {
+    gap: 16px !important;
+    row-gap: 36px !important;
+  }
+  .collection .card__heading {
+    font-size: 18px !important;
+  }
+  .collection .price-item--regular,
+  .collection .price-item--sale {
+    font-size: 18px !important;
+  }
+  .collection .card__inner::after {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+/* ---- Responsive: mobile ---- */
+@media screen and (max-width: 749px) {
+  .collection .product-grid {
+    gap: 12px !important;
+    row-gap: 28px !important;
+  }
+  .collection .card__heading {
+    font-size: 15px !important;
+  }
+  .collection .card .caption-with-letter-spacing {
+    font-size: 13px !important;
+  }
+  .collection .price-item--regular,
+  .collection .price-item--sale {
+    font-size: 16px !important;
+  }
+  .collection .price {
+    margin-top: 8px !important;
+  }
+  .collection .card__media .media {
+    padding: 10px !important;
+  }
+  .collection .card__information {
+    padding: 10px 0 0 !important;
+  }
+  /* Hide hover ATC on mobile */
+  .collection .card__inner::after {
+    display: none !important;
+  }
+  .collection .card .badge {
+    top: 10px !important;
+    left: 10px !important;
+    font-size: 11px !important;
+    padding: 4px 10px !important;
+  }
+}

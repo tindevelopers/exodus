@@ -1,0 +1,283 @@
+{%- comment -%}
+  Exodus About Awards & Recognition
+  Dark background section with heading, 2 feature images, and award rows.
+  Based on Figma Epharma design.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusAboutAwards-{{ section.id }} {
+    width: 100%;
+    background: #1A1A1A;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 40px;
+  }
+  /* Subtle background texture overlay */
+  #ExodusAboutAwards-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(60, 60, 60, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(50, 50, 50, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    margin: 0;
+  }
+  /* Feature images row */
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__image-card {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: #2A2A2A;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__image-card img,
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__image-card svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Awards list */
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__row {
+    display: grid;
+    grid-template-columns: 1fr auto 2fr;
+    gap: 32px;
+    align-items: center;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__row:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  /* Highlighted row */
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__row--highlight {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 24px 20px;
+    margin: 0 -20px;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__award-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 150%;
+    color: #FFFFFF;
+    margin: 0;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__award-year {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 150%;
+    color: #FFFFFF;
+    margin: 0;
+    min-width: 50px;
+    text-align: center;
+  }
+  #ExodusAboutAwards-{{ section.id }} .exodus-aa__award-desc {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    #ExodusAboutAwards-{{ section.id }} .exodus-aa__row {
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+    }
+    #ExodusAboutAwards-{{ section.id }} .exodus-aa__award-desc {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #ExodusAboutAwards-{{ section.id }} {
+      padding: 60px 20px;
+    }
+    #ExodusAboutAwards-{{ section.id }} .exodus-aa__heading {
+      font-size: 30px;
+    }
+    #ExodusAboutAwards-{{ section.id }} .exodus-aa__images {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    #ExodusAboutAwards-{{ section.id }} .exodus-aa__row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 20px 0;
+    }
+    #ExodusAboutAwards-{{ section.id }} .exodus-aa__award-year {
+      text-align: left;
+    }
+    #ExodusAboutAwards-{{ section.id }} .exodus-aa__row--highlight {
+      padding: 20px 16px;
+      margin: 0 -16px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusAboutAwards-{{ section.id }}">
+  <div class="exodus-aa__inner">
+    <h2 class="exodus-aa__heading">{{ section.settings.heading }}</h2>
+
+    {%- comment -%} Feature images {%- endcomment -%}
+    <div class="exodus-aa__images">
+      <div class="exodus-aa__image-card">
+        {%- if section.settings.image_1 != blank -%}
+          {{ section.settings.image_1 | image_url: width: 800 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'collection-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      <div class="exodus-aa__image-card">
+        {%- if section.settings.image_2 != blank -%}
+          {{ section.settings.image_2 | image_url: width: 800 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'collection-2' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Award rows {%- endcomment -%}
+    <div class="exodus-aa__list">
+      {%- for block in section.blocks -%}
+        <div class="exodus-aa__row{% if block.settings.highlight %} exodus-aa__row--highlight{% endif %}" {{ block.shopify_attributes }}>
+          <p class="exodus-aa__award-name">{{ block.settings.name }}</p>
+          <p class="exodus-aa__award-year">{{ block.settings.year }}</p>
+          <p class="exodus-aa__award-desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Awards",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Awards & Recognition"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Feature image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Feature image 2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "award",
+      "name": "Award",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Award name",
+          "default": "Customer Reviews Awards"
+        },
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "2024"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Fast shipping, Expert support & easy reordering."
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Highlight this row",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Awards",
+      "blocks": [
+        {
+          "type": "award",
+          "settings": {
+            "name": "Customer Reviews Awards",
+            "year": "2019",
+            "description": "Fast shipping, Expert support & easy reordering.",
+            "highlight": false
+          }
+        },
+        {
+          "type": "award",
+          "settings": {
+            "name": "Innovation Awards",
+            "year": "2020",
+            "description": "Best HealthTech Platform.",
+            "highlight": false
+          }
+        },
+        {
+          "type": "award",
+          "settings": {
+            "name": "Compliance Audit",
+            "year": "2023",
+            "description": "Certified by the Pharmacy Quality Alliance (PQA).",
+            "highlight": true
+          }
+        },
+        {
+          "type": "award",
+          "settings": {
+            "name": "Top Digital Pharmacy",
+            "year": "2024",
+            "description": "Awarded by the National Pharmacy Association.",
+            "highlight": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

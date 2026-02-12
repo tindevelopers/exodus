@@ -1,0 +1,538 @@
+{%- comment -%}
+  Exodus Footer
+  Dark green (#16261E) footer with rounded top corners.
+  4-column layout: brand + 2 link columns + newsletter.
+  Link columns and newsletter sit in #2F4F3E cards.
+  Bottom bar: social links + copyright.
+  Design: Figma Epharma-Home footer.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusFooter-{{ section.id }} {
+    width: 100%;
+    background: #16261E;
+    border-radius: 40px 40px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Decorative dots (top-right) */
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 560px;
+    height: 420px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor-dot {
+    position: absolute;
+    background: #2F4F3E;
+    border-radius: 6px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor-dot--1 {
+    width: 12px; height: 15px; right: 5px; top: 87px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor-dot--2 {
+    width: 25px; height: 30px; right: 16px; top: 0;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor-dot--3 {
+    width: 8px; height: 9px; right: 46px; top: 18px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor-dot--4 {
+    width: 4px; height: 5px; right: 63px; top: 0;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor-dot--5 {
+    width: 8px; height: 11px; right: 144px; top: 208px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__decor-dot--6 {
+    width: 7px; height: 9px; right: 158px; top: 38px;
+  }
+  /* Inner container */
+  #ExodusFooter-{{ section.id }} .exodus-footer__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 60px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+  /* Main columns row */
+  #ExodusFooter-{{ section.id }} .exodus-footer__columns {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+  }
+  /* Brand column */
+  #ExodusFooter-{{ section.id }} .exodus-footer__brand {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 10px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__logo {
+    max-width: 220px;
+    height: auto;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 160%;
+    color: #A5A5A5;
+    margin: 0;
+    max-width: 240px;
+  }
+  /* Link card */
+  #ExodusFooter-{{ section.id }} .exodus-footer__link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+    gap: 20px;
+    background: #2F4F3E;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__link-heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    color: #FFFFFF;
+    margin: 0;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__link-list a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    color: #A5A5A5;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__link-list a:hover {
+    color: #FFFFFF;
+  }
+  /* Newsletter card */
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px;
+    gap: 24px;
+    background: #2F4F3E;
+    border-radius: 10px;
+    flex: 1.2;
+    min-width: 0;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 150%;
+    color: #FFFFFF;
+    margin: 0;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 16px;
+    background: #16261E;
+    border: 1px solid #636363;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 140%;
+    color: #FFFFFF;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-input::placeholder {
+    color: #A5A5A5;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-input:focus {
+    border-color: #FFFFFF;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: #1F2F44;
+    border-radius: 8px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 140%;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-btn:hover {
+    opacity: 0.85;
+  }
+  /* Bottom bar */
+  #ExodusFooter-{{ section.id }} .exodus-footer__bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__social {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__social a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 140%;
+    color: #A5A5A5;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__social a:hover {
+    color: #FFFFFF;
+  }
+  #ExodusFooter-{{ section.id }} .exodus-footer__copyright {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 160%;
+    color: #FFFFFF;
+    text-align: right;
+    margin: 0;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    #ExodusFooter-{{ section.id }} .exodus-footer__inner {
+      padding: 60px 30px 50px;
+      gap: 40px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__columns {
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__brand {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      padding-top: 0;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__link-card {
+      flex: 1 1 calc(50% - 8px);
+      padding: 24px 20px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__newsletter {
+      flex: 1 1 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 24px 20px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-form {
+      flex-direction: row;
+      gap: 10px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-btn {
+      width: auto;
+      flex-shrink: 0;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__decor {
+      display: none;
+    }
+  }
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    #ExodusFooter-{{ section.id }} {
+      border-radius: 20px 20px 0 0;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__inner {
+      padding: 40px 20px 30px;
+      gap: 30px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__brand {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__columns {
+      flex-direction: column;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__link-card {
+      flex: 1 1 100%;
+      padding: 22px 20px;
+      gap: 16px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__newsletter {
+      padding: 22px 20px;
+      gap: 18px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__newsletter-form {
+      flex-direction: column;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__social {
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    #ExodusFooter-{{ section.id }} .exodus-footer__copyright {
+      text-align: left;
+      font-size: 11px;
+    }
+  }
+{%- endstyle -%}
+
+<footer id="ExodusFooter-{{ section.id }}">
+  {%- comment -%} Decorative dots {%- endcomment -%}
+  <div class="exodus-footer__decor">
+    <div class="exodus-footer__decor-dot exodus-footer__decor-dot--1"></div>
+    <div class="exodus-footer__decor-dot exodus-footer__decor-dot--2"></div>
+    <div class="exodus-footer__decor-dot exodus-footer__decor-dot--3"></div>
+    <div class="exodus-footer__decor-dot exodus-footer__decor-dot--4"></div>
+    <div class="exodus-footer__decor-dot exodus-footer__decor-dot--5"></div>
+    <div class="exodus-footer__decor-dot exodus-footer__decor-dot--6"></div>
+  </div>
+
+  <div class="exodus-footer__inner">
+    {%- comment -%} Main columns {%- endcomment -%}
+    <div class="exodus-footer__columns">
+      {%- comment -%} Brand column {%- endcomment -%}
+      <div class="exodus-footer__brand">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 600 | image_tag: class: 'exodus-footer__logo', loading: 'lazy' }}
+        {%- else -%}
+          <span style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:32px;color:#FFFFFF;">
+            {{ shop.name }}
+          </span>
+        {%- endif -%}
+
+        {%- if section.settings.tagline != blank -%}
+          <p class="exodus-footer__tagline">{{ section.settings.tagline }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Link columns (blocks) {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'link_column' -%}
+          <div class="exodus-footer__link-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <h3 class="exodus-footer__link-heading">{{ block.settings.heading }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.menu != blank -%}
+              <ul class="exodus-footer__link-list">
+                {%- for link in block.settings.menu.links -%}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if block.type == 'newsletter' -%}
+          <div class="exodus-footer__newsletter" {{ block.shopify_attributes }}>
+            {%- if block.settings.text != blank -%}
+              <p class="exodus-footer__newsletter-text">{{ block.settings.text }}</p>
+            {%- endif -%}
+
+            {%- form 'customer', id: 'ExodusFooterNewsletter' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="exodus-footer__newsletter-form">
+                <input
+                  type="email"
+                  name="contact[email]"
+                  class="exodus-footer__newsletter-input"
+                  placeholder="{{ block.settings.placeholder }}"
+                  required
+                  autocomplete="email"
+                >
+                <button type="submit" class="exodus-footer__newsletter-btn">
+                  {{ block.settings.button_label }}
+                </button>
+              </div>
+            {%- endform -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Bottom bar {%- endcomment -%}
+    <div class="exodus-footer__bottom">
+      <div class="exodus-footer__social">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'social_link' -%}
+            <a href="{{ block.settings.url }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+              {{ block.settings.label }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <p class="exodus-footer__copyright">
+        {{ section.settings.copyright }}
+      </p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Exodus Footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer logo",
+      "info": "Recommended: 300x75px, white or light logo on dark background."
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Professional reproductive supplies for equine and canine breeders."
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright text",
+      "default": "Copyright © 2025 Exodus | Designed by TIN | Powered by Shopify"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_column",
+      "name": "Link Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Column heading",
+          "default": "Utility Pages"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Newsletter text",
+          "default": "Stay Connected & Stay Healthy – Anytime, Anywhere!"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Email placeholder",
+          "default": "Enter your email"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Subscribe button label",
+          "default": "Subscribe Now"
+        }
+      ]
+    },
+    {
+      "type": "social_link",
+      "name": "Social Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Facebook"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Exodus Footer",
+      "blocks": [
+        {
+          "type": "link_column",
+          "settings": {
+            "heading": "Utility Pages"
+          }
+        },
+        {
+          "type": "link_column",
+          "settings": {
+            "heading": "Quick Links"
+          }
+        },
+        {
+          "type": "newsletter",
+          "settings": {
+            "text": "Stay Connected & Stay Healthy – Anytime, Anywhere!",
+            "placeholder": "Enter your email",
+            "button_label": "Subscribe Now"
+          }
+        },
+        {
+          "type": "social_link",
+          "settings": { "label": "Facebook" }
+        },
+        {
+          "type": "social_link",
+          "settings": { "label": "YouTube" }
+        },
+        {
+          "type": "social_link",
+          "settings": { "label": "LinkedIn" }
+        },
+        {
+          "type": "social_link",
+          "settings": { "label": "Instagram" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

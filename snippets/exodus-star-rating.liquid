@@ -1,0 +1,65 @@
+{% comment %}
+  Exodus Star Rating — AG1-style star rating with review count.
+  Displayed above the product title.
+
+  Priority:
+  1. Standard reviews app metafield (reviews.rating)
+  2. Custom metafields (custom.rating + custom.review_count)
+  3. Hidden if no data
+
+  Usage:
+  {% render 'exodus-star-rating', product: product %}
+{% endcomment %}
+
+{%- liquid
+  assign show_rating = false
+  assign rating_value = nil
+  assign rating_max = 5
+  assign review_count = 0
+
+  if product.metafields.reviews.rating.value != blank
+    assign show_rating = true
+    assign rating_value = product.metafields.reviews.rating.value.rating
+    assign rating_max = product.metafields.reviews.rating.value.scale_max
+    assign review_count = product.metafields.reviews.rating_count | default: 0
+  elsif product.metafields.custom.rating.value != blank
+    assign show_rating = true
+    assign rating_value = product.metafields.custom.rating.value
+    assign review_count = product.metafields.custom.review_count.value | default: 0
+  endif
+-%}
+
+{%- if show_rating -%}
+  <div class="exodus-rating">
+    <div class="exodus-rating__stars" aria-label="{{ rating_value }} out of {{ rating_max }} stars">
+      {%- assign rating_floor = rating_value | floor -%}
+      {%- assign rating_remainder = rating_value | minus: rating_floor -%}
+      {%- assign half_star_index = rating_floor | plus: 1 -%}
+      {%- for i in (1..5) -%}
+        {%- if i <= rating_floor -%}
+          <svg class="exodus-rating__star exodus-rating__star--full" width="18" height="18" viewBox="0 0 24 24" fill="#EF8E06" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        {%- elsif i == half_star_index and rating_remainder >= 0.25 -%}
+          <svg class="exodus-rating__star exodus-rating__star--half" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="half-star-{{ i }}">
+                <stop offset="50%" stop-color="#EF8E06"/>
+                <stop offset="50%" stop-color="#D1D5DB"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#half-star-{{ i }})"/>
+          </svg>
+        {%- else -%}
+          <svg class="exodus-rating__star exodus-rating__star--empty" width="18" height="18" viewBox="0 0 24 24" fill="#D1D5DB" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <span class="exodus-rating__score">{{ rating_value }}/{{ rating_max }}</span>
+    {%- if review_count > 0 -%}
+      <span class="exodus-rating__count">({{ review_count }} Reviews)</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,85 @@
+{%- comment -%}
+  Exodus About Mission
+  Centered mission statement with heading and body text.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusAboutMission-{{ section.id }} {
+    width: 100%;
+    background: #FFFFFF;
+    padding: 100px 40px;
+  }
+  #ExodusAboutMission-{{ section.id }} .exodus-am__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  #ExodusAboutMission-{{ section.id }} .exodus-am__heading {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #0D0D0D;
+    margin: 0;
+  }
+  #ExodusAboutMission-{{ section.id }} .exodus-am__body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 180%;
+    color: #636363;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #ExodusAboutMission-{{ section.id }} {
+      padding: 60px 20px;
+    }
+    #ExodusAboutMission-{{ section.id }} .exodus-am__heading {
+      font-size: 28px;
+    }
+    #ExodusAboutMission-{{ section.id }} .exodus-am__body {
+      font-size: 16px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusAboutMission-{{ section.id }}">
+  <div class="exodus-am__inner">
+    <h2 class="exodus-am__heading">{{ section.settings.heading }}</h2>
+    {%- if section.settings.body != blank -%}
+      <p class="exodus-am__body">{{ section.settings.body }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Mission",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Mission"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "To deliver professional-grade reproductive supplies supported by knowledgeable technical guidance and exceptional customer service."
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Mission"
+    }
+  ]
+}
+{% endschema %}

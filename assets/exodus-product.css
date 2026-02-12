@@ -1,0 +1,911 @@
+/* ============================================================
+   Exodus Product Page Overrides
+   AG1-inspired clean, spacious product layout.
+   ============================================================ */
+
+/* ── Global font reset for product page ── */
+product-info,
+product-info * {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+}
+
+/* ── Page width override ── */
+product-info .page-width {
+  max-width: 1200px;
+  padding: 0 40px;
+}
+
+/* ── Two-column grid — equal width columns ── */
+product-info .product.grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 60px;
+  align-items: start;
+  flex-wrap: nowrap !important;
+}
+
+product-info .product.grid > .grid__item {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+@media screen and (min-width: 990px) {
+  product-info .product--large:not(.product--no-media) .product__media-wrapper,
+  product-info .product--medium:not(.product--no-media) .product__media-wrapper,
+  product-info .product--small:not(.product--no-media) .product__media-wrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  product-info .product--large:not(.product--no-media) .product__info-wrapper,
+  product-info .product--medium:not(.product--no-media) .product__info-wrapper,
+  product-info .product--small:not(.product--no-media) .product__info-wrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  product-info .product__info-wrapper {
+    padding: 0 !important;
+  }
+}
+
+/* ── Media / Image area — Chewy-style vertical scroll ── */
+product-info .product__media-wrapper {
+  position: relative;
+}
+
+/* Force all images into a scrollable vertical column — shows ~2 images then scrolls */
+@media screen and (min-width: 990px) {
+  product-info .product__media-list.grid,
+  product-info ul.product__media-list,
+  product-info .product__media-list {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 12px !important;
+    grid-template-columns: unset !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    max-height: 85vh;
+    padding: 0 4px 0 0 !important;
+    margin: 0 !important;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #C4C4C4 transparent;
+  }
+
+  product-info .product__media-list::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  product-info .product__media-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  product-info .product__media-list::-webkit-scrollbar-thumb {
+    background: #C4C4C4;
+    border-radius: 4px;
+  }
+
+  product-info .product__media-list::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+
+  product-info .product__media-list .product__media-item,
+  product-info .product__media-list .product__media-item.grid__item,
+  product-info .product__media-list .grid__item.slider__slide {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    flex-shrink: 0;
+  }
+
+  /* Remove slider behavior on desktop */
+  product-info .product__media-list .slider__slide {
+    scroll-snap-align: unset !important;
+  }
+
+  /* Hide slider navigation arrows on desktop */
+  product-info .slider-buttons {
+    display: none !important;
+  }
+
+  /* Override Dawn's stacked 50% max-width */
+  product-info .product--stacked .product__media-item {
+    max-width: 100% !important;
+  }
+}
+
+product-info .product__media-list .product__media-item img,
+product-info .product__media-list .product__media-item model-viewer,
+product-info .product__media-list .product__media-item video {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+
+/* Hide thumbnail gallery entirely — all images are visible by scrolling */
+product-info .thumbnail-list,
+product-info .thumbnail-slider {
+  display: none !important;
+}
+
+/* ── Star rating (above title) ── */
+product-info .exodus-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+product-info .exodus-rating__stars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+product-info .exodus-rating__star {
+  display: block;
+}
+
+product-info .exodus-rating__score {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 150%;
+  color: #0D0D0D;
+}
+
+product-info .exodus-rating__count {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 150%;
+  color: #636363;
+}
+
+/* ── Vendor / breadcrumb ── */
+product-info .product__text.caption-with-letter-spacing {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  line-height: 140%;
+  color: #636363 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+/* ── Product title ── */
+product-info .product__title h1,
+product-info .product__title h2.h1,
+product-info .product__title a h2.h1 {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 36px !important;
+  line-height: 120% !important;
+  color: #0D0D0D !important;
+  margin: 0 !important;
+  letter-spacing: -0.02em;
+}
+
+/* ── Subtitle — wraps to second line if needed ── */
+product-info .product__text.subtitle {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 160% !important;
+  color: #636363 !important;
+  margin-top: 4px !important;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ── Hide standalone description block (moved into collapsible tab) ── */
+product-info .product__description {
+  display: none !important;
+}
+
+/* ── Price area ── */
+product-info .price--large .price-item--regular,
+product-info .price--large .price-item--sale {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  line-height: 130% !important;
+  color: #1F2F44 !important;
+}
+
+product-info .price--large s,
+product-info .price--large .price-item--regular s,
+product-info .price--large .price-item--last s,
+product-info .price .price-item--regular s {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 150% !important;
+  color: #A5A5A5 !important;
+  text-decoration: line-through !important;
+}
+
+/* Sale / Sold out badges — hide by default, show only in context */
+product-info .price .badge {
+  display: none !important;
+}
+product-info .price--on-sale .price__badge-sale {
+  display: inline-flex !important;
+  align-items: center;
+  padding: 4px 12px;
+  gap: 4px;
+  background: #EF8E06 !important;
+  border-radius: 70px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  line-height: 150%;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+product-info .price--sold-out .price__badge-sold-out {
+  display: inline-flex !important;
+  align-items: center;
+  padding: 4px 12px;
+  gap: 4px;
+  background: #636363 !important;
+  border-radius: 70px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  line-height: 150%;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+product-info .price .badge--bottom-left {
+  position: static !important;
+}
+
+/* ── Quantity selector ── */
+product-info .quantity__input {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  line-height: 160%;
+  color: #0D0D0D !important;
+}
+
+product-info .quantity {
+  border: 1.5px solid #D1D5DB !important;
+  border-radius: 10px !important;
+  min-height: 54px;
+  overflow: hidden;
+}
+
+product-info .quantity__button {
+  color: #0D0D0D !important;
+  border: none !important;
+}
+
+product-info .quantity__button svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Quantity label */
+product-info .product-form__input label {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  color: #636363 !important;
+  text-transform: capitalize !important;
+  letter-spacing: 0 !important;
+}
+
+/* ── Add to Cart button — AG1 style: full-width, dark, with arrow ── */
+product-info .product-form__submit {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 140%;
+  color: #FFFFFF !important;
+  background: #1F2F44 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 18px 24px !important;
+  min-height: 58px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+}
+
+product-info .product-form__submit:hover {
+  background: #162336 !important;
+}
+
+product-info .product-form__submit:disabled {
+  background: #A5A5A5 !important;
+  cursor: default;
+}
+
+product-info .product-form__submit .svg-wrapper {
+  display: none;
+}
+
+/* Remove any outer border/outline from the button wrapper */
+product-info .product-form__buttons,
+product-info .product-form {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+product-info button.product-form__submit:focus,
+product-info button.product-form__submit:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide dynamic checkout buttons */
+product-info .shopify-payment-button {
+  display: none !important;
+}
+
+/* ── FREE SHIPPING trust badge (AG1-style) ── */
+product-info .exodus-trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 0 8px;
+  width: 100%;
+}
+
+product-info .exodus-trust-badge__icon {
+  width: 28px;
+  height: 28px;
+  color: #1F2F44;
+}
+
+product-info .exodus-trust-badge__text {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+}
+
+/* ── Product description ── */
+product-info .product__description,
+product-info .product__description p {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 160% !important;
+  color: #636363 !important;
+  margin-top: 10px;
+}
+
+/* ============================================================
+   Collapsible Tabs — AG1-inspired clean white layout
+   Full-width divider lines, no background card, spacious.
+   ============================================================ */
+
+/* Remove Dawn's default accordion margins and borders */
+product-info .product__accordion.accordion {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* First accordion — top border to separate from content above */
+product-info .product__info-container .product__accordion.accordion:first-of-type {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin-top: 30px !important;
+  border: none !important;
+  border-top: 1px solid #E5E5E5 !important;
+}
+
+/* All subsequent accordions */
+product-info .product__info-container .product__accordion.accordion + .product__accordion.accordion {
+  background: transparent;
+  padding: 0;
+  margin-top: 0 !important;
+  border: none !important;
+  border-top: 1px solid #E5E5E5 !important;
+  border-radius: 0;
+}
+
+/* Last accordion — bottom border */
+product-info .product__info-container .product__accordion.accordion:last-of-type {
+  padding-bottom: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #E5E5E5 !important;
+}
+
+/* If there's only one accordion */
+product-info .product__info-container .product__accordion.accordion:first-of-type:last-of-type {
+  border-radius: 0;
+  padding-bottom: 0;
+  border: none !important;
+  border-top: 1px solid #E5E5E5 !important;
+  border-bottom: 1px solid #E5E5E5 !important;
+}
+
+/* Summary / header row */
+product-info .accordion summary {
+  padding: 20px 0 !important;
+  min-height: auto !important;
+  cursor: pointer;
+  list-style: none;
+}
+
+product-info .accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+product-info .accordion summary::marker {
+  display: none;
+  content: '';
+}
+
+/* Title text — bold, dark, larger like AG1 */
+product-info .accordion .accordion__title,
+product-info .accordion h2.h4.accordion__title,
+product-info .accordion .summary__title h2 {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 150% !important;
+  color: #0D0D0D !important;
+  margin: 0 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Hide icons next to title */
+product-info .accordion .summary__title .svg-wrapper,
+product-info .accordion .summary__title .icon-accordion {
+  display: none !important;
+}
+
+/* Hide default caret, replace with + / − */
+product-info .accordion .icon-caret {
+  display: none !important;
+}
+
+product-info .accordion summary::after {
+  content: '+';
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1;
+  color: #0D0D0D;
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  transition: none;
+}
+
+product-info .accordion details[open] > summary::after {
+  content: '−';
+}
+
+/* Expanded content — clean, readable */
+product-info .accordion .accordion__content,
+product-info .accordion .accordion__content p,
+product-info .accordion .accordion__content li,
+product-info .accordion .accordion__content span {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 170% !important;
+  color: #636363 !important;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+
+product-info .accordion .accordion__content {
+  padding: 0 0 20px 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── Hide share button ── */
+product-info .share-button {
+  display: none !important;
+}
+
+/* ── Product info container spacing ── */
+product-info .product__info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+product-info .product__info-container > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+product-info .product__info-container > * + * {
+  margin-top: 12px !important;
+}
+
+product-info .product__info-container > .product__title {
+  margin-top: 8px !important;
+}
+
+product-info .product__info-container > .product__accordion:not(:first-of-type) {
+  margin-top: 0 !important;
+}
+
+/* ── Hide tax / shipping note ── */
+product-info .product__tax {
+  display: none !important;
+}
+
+/* ── Hide installment / payment terms ── */
+product-info .installment {
+  display: none !important;
+}
+
+/* ── Variant picker cleanup ── */
+product-info .product-form__input--pill {
+  margin-bottom: 0 !important;
+}
+
+product-info .product-form__input {
+  margin-bottom: 8px !important;
+}
+
+/* ── Mobile adjustments ── */
+@media screen and (max-width: 989px) {
+  product-info .product.grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px;
+  }
+
+  product-info .product__title h1,
+  product-info .product__title h2.h1,
+  product-info .product__title a h2.h1 {
+    font-size: 28px !important;
+  }
+
+  product-info .price--large .price-item--regular,
+  product-info .price--large .price-item--sale {
+    font-size: 26px !important;
+  }
+
+  product-info .page-width {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  product-info .accordion summary {
+    padding: 16px 0 !important;
+  }
+
+  product-info .accordion .accordion__title,
+  product-info .accordion h2.h4.accordion__title,
+  product-info .accordion .summary__title h2 {
+    font-size: 16px !important;
+  }
+
+  .exodus-vc__grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .exodus-sp__option-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ============================================================
+   Variant Cards — AG1-style selectable cards
+   ============================================================ */
+
+.exodus-vc {
+  margin: 4px 0 0;
+}
+
+.exodus-vc__label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin: 0 0 12px;
+}
+
+.exodus-vc__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.exodus-vc__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 20px 16px;
+  background: #FFFFFF;
+  border: 2px solid #E5E5E5;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-align: center;
+  min-height: 90px;
+}
+
+.exodus-vc__card:hover {
+  border-color: #1F2F44;
+}
+
+.exodus-vc__card--active {
+  border-color: #1F2F44;
+  box-shadow: 0 0 0 1px #1F2F44;
+}
+
+.exodus-vc__card--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.exodus-vc__badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 12px;
+  background: #2F6B3A;
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 140%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.exodus-vc__title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  color: #0D0D0D;
+}
+
+.exodus-vc__price {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 140%;
+  color: #636363;
+}
+
+.exodus-vc__sold-out {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #A5A5A5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   Selling Plan Picker — AG1-style Subscribe & Save / Buy once
+   ============================================================ */
+
+.exodus-sp {
+  margin: 8px 0 0;
+}
+
+.exodus-sp__label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 140%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin: 0 0 12px;
+}
+
+.exodus-sp__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1.5px solid #E5E5E5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.exodus-sp__option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: background 0.15s;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.exodus-sp__option:last-child {
+  border-bottom: none;
+}
+
+.exodus-sp__option--active {
+  background: #F8FAFB;
+}
+
+.exodus-sp__option:hover {
+  background: #F8FAFB;
+}
+
+.exodus-sp__radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.exodus-sp__option-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.exodus-sp__option-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.exodus-sp__radio-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 2px solid #D1D5DB;
+  background: #FFFFFF;
+  transition: border-color 0.15s;
+}
+
+.exodus-sp__radio:checked ~ .exodus-sp__option-header .exodus-sp__radio-dot {
+  border-color: #1F2F44;
+}
+
+.exodus-sp__radio:checked ~ .exodus-sp__option-header .exodus-sp__radio-dot::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1F2F44;
+}
+
+.exodus-sp__option-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  color: #0D0D0D;
+}
+
+.exodus-sp__option-right {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.exodus-sp__compare-price {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #A5A5A5;
+  text-decoration: line-through;
+}
+
+.exodus-sp__plan-price {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 140%;
+  color: #1F2F44;
+}
+
+.exodus-sp__option-details {
+  padding: 8px 0 0 32px;
+}
+
+.exodus-sp__option-desc {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+  color: #636363;
+  margin: 0;
+}
+
+.exodus-sp__option-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 0 0 32px;
+}
+
+.exodus-sp__perk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+  color: #0D0D0D;
+}
+
+.exodus-sp__perk svg {
+  flex-shrink: 0;
+}
+
+/* Hide perks when option is not selected */
+.exodus-sp__option-perks {
+  display: none;
+}
+
+.exodus-sp__option--active .exodus-sp__option-perks {
+  display: flex;
+}
+
+/* Hide details when option is not selected */
+.exodus-sp__option-details {
+  display: none;
+}
+
+.exodus-sp__option--active .exodus-sp__option-details {
+  display: block;
+}

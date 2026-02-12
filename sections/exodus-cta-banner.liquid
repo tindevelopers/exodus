@@ -1,0 +1,164 @@
+{%- comment -%}
+  Exodus CTA Banner
+  Large typographic statement with mixed muted/dark text colors
+  and an inline pill-shaped image.
+  Text: "Get trusted medicines at your doorstep [image] safe,
+  simple, and quick with Epharma."
+  Design: Figma Epharma-Home CTA banner section.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusCTA-{{ section.id }} {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 120px 100px;
+    text-align: center;
+  }
+  #ExodusCTA-{{ section.id }} .exodus-cta__text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: {{ section.settings.font_size }}px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1506px;
+  }
+  /* Muted words */
+  #ExodusCTA-{{ section.id }} .exodus-cta__muted {
+    color: #A5A5A5;
+  }
+  /* Dark / emphasized words */
+  #ExodusCTA-{{ section.id }} .exodus-cta__dark {
+    color: #0D0D0D;
+  }
+  /* Inline pill image */
+  #ExodusCTA-{{ section.id }} .exodus-cta__pill-img {
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    border-radius: 100px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin: 0 8px;
+  }
+  #ExodusCTA-{{ section.id }} .exodus-cta__pill-placeholder {
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    border-radius: 100px;
+    background: #E0E0E0;
+    vertical-align: middle;
+    margin: 0 8px;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    #ExodusCTA-{{ section.id }} {
+      padding: 60px 40px;
+    }
+    #ExodusCTA-{{ section.id }} .exodus-cta__text {
+      font-size: 64px;
+    }
+    #ExodusCTA-{{ section.id }} .exodus-cta__pill-img,
+    #ExodusCTA-{{ section.id }} .exodus-cta__pill-placeholder {
+      width: 200px;
+      height: 66px;
+    }
+  }
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    #ExodusCTA-{{ section.id }} {
+      padding: 40px 20px;
+    }
+    #ExodusCTA-{{ section.id }} .exodus-cta__text {
+      font-size: 36px;
+    }
+    #ExodusCTA-{{ section.id }} .exodus-cta__pill-img,
+    #ExodusCTA-{{ section.id }} .exodus-cta__pill-placeholder {
+      width: 120px;
+      height: 40px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusCTA-{{ section.id }}">
+  <p class="exodus-cta__text">
+    <span class="exodus-cta__muted">{{ section.settings.line1 }}</span>
+    <span class="exodus-cta__dark">{{ section.settings.line2_dark }}</span>
+    {%- if section.settings.pill_image != blank -%}
+      {{
+        section.settings.pill_image
+        | image_url: width: 600, height: 200
+        | image_tag:
+          class: 'exodus-cta__pill-img',
+          loading: 'lazy',
+          sizes: '(min-width: 990px) 300px, (min-width: 750px) 200px, 120px',
+          widths: '120, 200, 300, 600'
+      }}
+    {%- else -%}
+      <span class="exodus-cta__pill-placeholder"></span>
+    {%- endif -%}
+    <span class="exodus-cta__muted">{{ section.settings.line2_muted }}</span>
+    <span class="exodus-cta__muted">{{ section.settings.line3 }}</span>
+  </p>
+</section>
+
+{% schema %}
+{
+  "name": "Exodus CTA Banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 36,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size (desktop)",
+      "default": 106
+    },
+    {
+      "type": "text",
+      "id": "line1",
+      "label": "Line 1 (muted)",
+      "default": "Get trusted medicines at"
+    },
+    {
+      "type": "text",
+      "id": "line2_dark",
+      "label": "Line 2 — dark text (before image)",
+      "default": " your doorstep"
+    },
+    {
+      "type": "image_picker",
+      "id": "pill_image",
+      "label": "Inline pill image",
+      "info": "Rounded pill image displayed inline with the text. Recommended: 600x200px."
+    },
+    {
+      "type": "text",
+      "id": "line2_muted",
+      "label": "Line 2 — muted text (after image)",
+      "default": " safe,"
+    },
+    {
+      "type": "text",
+      "id": "line3",
+      "label": "Line 3 (muted)",
+      "default": " simple, and quick with Epharma."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Exodus CTA Banner"
+    }
+  ]
+}
+{% endschema %}

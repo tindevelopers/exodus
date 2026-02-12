@@ -1,0 +1,276 @@
+{%- comment -%}
+  Exodus Differentiators — "Why Choose Exodus Breeders?"
+  Clean centered layout with 4 feature items in a horizontal row.
+  Each item has an icon above and a label below.
+  Light grey background (#F2F2F2).
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusDiff-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    background: #F2F2F2;
+    margin-top: 80px;
+  }
+  /* Content container */
+  #ExodusDiff-{{ section.id }} .exodus-diff__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+  /* Title */
+  #ExodusDiff-{{ section.id }} .exodus-diff__title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #2B2B2B;
+    margin: 0;
+    width: 100%;
+  }
+  /* Features row */
+  #ExodusDiff-{{ section.id }} .exodus-diff__features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    width: 100%;
+  }
+  /* Each feature item */
+  #ExodusDiff-{{ section.id }} .exodus-diff__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  /* Icon container */
+  #ExodusDiff-{{ section.id }} .exodus-diff__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  #ExodusDiff-{{ section.id }} .exodus-diff__icon img,
+  #ExodusDiff-{{ section.id }} .exodus-diff__icon svg {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  /* Label */
+  #ExodusDiff-{{ section.id }} .exodus-diff__label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #2B2B2B;
+    margin: 0;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    #ExodusDiff-{{ section.id }} .exodus-diff__content {
+      padding: 80px 40px;
+      gap: 40px;
+    }
+    #ExodusDiff-{{ section.id }} .exodus-diff__title {
+      font-size: 40px;
+    }
+    #ExodusDiff-{{ section.id }} .exodus-diff__features {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    #ExodusDiff-{{ section.id }} .exodus-diff__content {
+      padding: 60px 20px;
+      gap: 30px;
+    }
+    #ExodusDiff-{{ section.id }} .exodus-diff__title {
+      font-size: 28px;
+    }
+    #ExodusDiff-{{ section.id }} .exodus-diff__features {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    #ExodusDiff-{{ section.id }} .exodus-diff__label {
+      font-size: 14px;
+    }
+    #ExodusDiff-{{ section.id }} .exodus-diff__icon {
+      width: 40px;
+      height: 40px;
+    }
+    #ExodusDiff-{{ section.id }} .exodus-diff__icon img,
+    #ExodusDiff-{{ section.id }} .exodus-diff__icon svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusDiff-{{ section.id }}">
+  <div class="exodus-diff__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="exodus-diff__title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="exodus-diff__features">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="exodus-diff__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon != blank -%}
+              <div class="exodus-diff__icon">
+                {{ block.settings.icon | image_url: width: 96 | image_tag: loading: 'lazy' }}
+              </div>
+            {%- else -%}
+              <div class="exodus-diff__icon">
+                {%- case block.settings.icon_name -%}
+                  {%- when 'truck' -%}
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 12h26v20H4z" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M30 22h7l5 7v3H30V22z" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <circle cx="13" cy="35" r="3.5" stroke="#2B2B2B" stroke-width="2"/>
+                      <circle cx="37" cy="35" r="3.5" stroke="#2B2B2B" stroke-width="2"/>
+                    </svg>
+                  {%- when 'veterinary' -%}
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="8" y="6" rx="3" width="32" height="36" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M18 16h12M18 22h12M18 28h8" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M24 12v4M22 14h4" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {%- when 'quality' -%}
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M18 24l4 4 8-8" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {%- when 'support' -%}
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="24" cy="24" r="18" stroke="#2B2B2B" stroke-width="2"/>
+                      <path d="M18 20a6 6 0 0 1 12 0c0 3-3 4-3 7h-6c0-3-3-4-3-7z" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M21 31h6" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M24 34v2" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  {%- else -%}
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="24" cy="24" r="18" stroke="#2B2B2B" stroke-width="2"/>
+                      <path d="M17 24l5 5 9-10" stroke="#2B2B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                {%- endcase -%}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.label != blank -%}
+              <p class="exodus-diff__label">{{ block.settings.label }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Exodus Differentiators",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Exodus Breeders?"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 36,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Custom icon image",
+          "info": "Upload a custom icon (48x48px recommended). Leave blank to use a built-in icon."
+        },
+        {
+          "type": "select",
+          "id": "icon_name",
+          "label": "Built-in icon",
+          "info": "Used only if no custom icon is uploaded.",
+          "default": "truck",
+          "options": [
+            { "value": "truck", "label": "Delivery truck" },
+            { "value": "veterinary", "label": "Veterinary / clipboard" },
+            { "value": "quality", "label": "Quality star" },
+            { "value": "support", "label": "Expert support" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Feature text",
+          "default": "Fast Delivery When It Matters"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Exodus Differentiators",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon_name": "truck",
+            "label": "Fast Delivery When It Matters"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon_name": "veterinary",
+            "label": "Field-Tested & Veterinary-Approved"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon_name": "quality",
+            "label": "Professional-Grade Products"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon_name": "support",
+            "label": "Expert Support & Guidance"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

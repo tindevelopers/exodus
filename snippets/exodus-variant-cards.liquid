@@ -1,0 +1,55 @@
+{% comment %}
+  Exodus Variant Cards — AG1-style large selectable cards for variants.
+  Shows variant name, price-per-unit (if available), and savings badge.
+
+  Accepts:
+  - product: {Object} product object
+  - product_form_id: {String} product form id
+  - section_id: {String} section id
+
+  Usage:
+  {% render 'exodus-variant-cards', product: product, product_form_id: product_form_id, section_id: section.id %}
+{% endcomment %}
+
+{%- unless product.has_only_default_variant -%}
+  <div class="exodus-vc" data-section="{{ section_id }}">
+    <p class="exodus-vc__label">Select Option:</p>
+    <div class="exodus-vc__grid">
+      {%- for variant in product.variants -%}
+        {%- liquid
+          assign is_selected = false
+          if variant == product.selected_or_first_available_variant
+            assign is_selected = true
+          endif
+
+          assign has_savings = false
+          assign savings_pct = 0
+          if variant.compare_at_price and variant.compare_at_price > variant.price
+            assign has_savings = true
+            assign savings_amount = variant.compare_at_price | minus: variant.price
+            assign savings_pct = savings_amount | times: 100 | divided_by: variant.compare_at_price
+          endif
+        -%}
+        <button
+          type="button"
+          class="exodus-vc__card{% if is_selected %} exodus-vc__card--active{% endif %}{% unless variant.available %} exodus-vc__card--disabled{% endunless %}"
+          data-variant-id="{{ variant.id }}"
+          data-variant-price="{{ variant.price }}"
+          data-variant-compare-price="{{ variant.compare_at_price }}"
+          data-variant-available="{{ variant.available }}"
+          {% unless variant.available %}disabled{% endunless %}
+          aria-label="{{ variant.title }}"
+        >
+          {%- if has_savings -%}
+            <span class="exodus-vc__badge">Save {{ savings_pct }}%</span>
+          {%- endif -%}
+          <span class="exodus-vc__title">{{ variant.title }}</span>
+          <span class="exodus-vc__price">{{ variant.price | money }}</span>
+          {%- unless variant.available -%}
+            <span class="exodus-vc__sold-out">Sold out</span>
+          {%- endunless -%}
+        </button>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endunless -%}

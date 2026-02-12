@@ -1,0 +1,347 @@
+{%- comment -%}
+  Exodus Process Steps
+  Dark card (#1F2F44) with header row (title + subtitle + CTA),
+  horizontal divider, and 4-step process row with dashed connectors.
+  Reusable for any multi-step process flow.
+{%- endcomment -%}
+
+{%- style -%}
+  #ExodusRx-{{ section.id }} {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+  }
+  #ExodusRx-{{ section.id }} .exodus-rx__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px;
+    gap: 100px;
+    background: #1F2F44;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* ── Header row ── */
+  #ExodusRx-{{ section.id }} .exodus-rx__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    gap: 40px;
+  }
+  #ExodusRx-{{ section.id }} .exodus-rx__header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    max-width: 782px;
+  }
+  #ExodusRx-{{ section.id }} .exodus-rx__title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 114%;
+    color: #FFFFFF;
+    margin: 0;
+  }
+  #ExodusRx-{{ section.id }} .exodus-rx__subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #A5A5A5;
+    margin: 0;
+  }
+  #ExodusRx-{{ section.id }} .exodus-rx__cta {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 24px;
+    background: #285CEA;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: #FFFFFF;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+  #ExodusRx-{{ section.id }} .exodus-rx__cta:hover {
+    opacity: 0.85;
+  }
+  /* ── Divider ── */
+  #ExodusRx-{{ section.id }} .exodus-rx__divider {
+    width: 100%;
+    height: 0;
+    border: none;
+    border-top: 1px solid #636363;
+    margin: 0;
+  }
+  /* ── Steps row ── */
+  #ExodusRx-{{ section.id }} .exodus-rx__steps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+    position: relative;
+  }
+  /* Each step */
+  #ExodusRx-{{ section.id }} .exodus-rx__step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  /* Step number pill */
+  #ExodusRx-{{ section.id }} .exodus-rx__step-pill {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 60px;
+    height: 80px;
+    background: #2B2B2B;
+    border-radius: 100px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  #ExodusRx-{{ section.id }} .exodus-rx__step-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: #A5A5A5;
+  }
+  /* Step label */
+  #ExodusRx-{{ section.id }} .exodus-rx__step-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 140%;
+    color: #FFFFFF;
+    white-space: nowrap;
+  }
+  /* Dashed connector between steps */
+  #ExodusRx-{{ section.id }} .exodus-rx__connector {
+    flex: 1;
+    min-width: 40px;
+    max-width: 140px;
+    height: 0;
+    border: none;
+    border-top: 2px dashed #A5A5A5;
+    z-index: 0;
+  }
+
+  /* ── Tablet ── */
+  @media screen and (max-width: 989px) {
+    #ExodusRx-{{ section.id }} .exodus-rx__card {
+      padding: 50px 40px;
+      gap: 50px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__title {
+      font-size: 42px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__steps {
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__connector {
+      display: none;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__step-label {
+      font-size: 18px;
+    }
+  }
+  /* ── Mobile ── */
+  @media screen and (max-width: 749px) {
+    #ExodusRx-{{ section.id }} .exodus-rx__card {
+      padding: 40px 20px;
+      gap: 30px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__title {
+      font-size: 28px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__subtitle {
+      font-size: 15px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__steps {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__step-pill {
+      width: 48px;
+      height: 64px;
+      padding: 14px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__step-num {
+      font-size: 14px;
+    }
+    #ExodusRx-{{ section.id }} .exodus-rx__step-label {
+      font-size: 16px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ExodusRx-{{ section.id }}">
+  <div class="exodus-rx__card">
+    {%- comment -%} Header row {%- endcomment -%}
+    <div class="exodus-rx__header">
+      <div class="exodus-rx__header-text">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="exodus-rx__title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="exodus-rx__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="exodus-rx__cta">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Divider {%- endcomment -%}
+    <hr class="exodus-rx__divider">
+
+    {%- comment -%} Steps row {%- endcomment -%}
+    <div class="exodus-rx__steps">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          {%- comment -%} Dashed connector before every step except the first {%- endcomment -%}
+          {%- unless forloop.first -%}
+            <div class="exodus-rx__connector"></div>
+          {%- endunless -%}
+
+          <div class="exodus-rx__step" {{ block.shopify_attributes }}>
+            <div class="exodus-rx__step-pill">
+              <span class="exodus-rx__step-num">Step {{ block.settings.step_number }}</span>
+            </div>
+            <span class="exodus-rx__step-label">{{ block.settings.label }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Exodus Process Steps",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How To Order"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 28,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 64
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Get the reproductive supplies you need in just a few simple steps. Fast shipping, expert support, and trusted by breeders nationwide."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Step label",
+          "default": "Browse Products"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Exodus Process Steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "label": "Browse Products"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "label": "Add to Cart"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "label": "Checkout"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "04",
+            "label": "Fast Shipping"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
